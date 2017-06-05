@@ -17,6 +17,10 @@ The sample shows how to use [Dynamsoft Barcode Reader SDK][0] to build a **.NET 
     ```
     ![dotnet core build](http://www.codepool.biz/wp-content/uploads/2017/05/dotnetcore-bin.PNG)
     ![dotnet core barcode](http://www.codepool.biz/wp-content/uploads/2017/05/dotnet-core-barcode.PNG)
+    
+## Blog
+[React: Load Global JavaScript Library with Webpack](2)
 
 [0]:http://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx
 [1]:https://www.dynamsoft.com/Downloads/DownloadLog.aspx?server=1&product=Barcode/DBR-Libs.zip
+[2]:http://www.codepool.biz/react-webpack-load-javascript-library.html
