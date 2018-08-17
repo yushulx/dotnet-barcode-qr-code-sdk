@@ -59,16 +59,7 @@ namespace DynamsoftBarcode
         public static extern int DBR_DecodeFile(IntPtr hBarcode, string filename, string template);
 
         [DllImport("DynamsoftBarcodeReader")]
-        public static extern int DBR_SetBarcodeFormats(IntPtr hBarcode, int iFormat);
-
-        [DllImport("DynamsoftBarcodeReader")]
-        public static extern int DBR_SetMaxBarcodesNumPerPage(IntPtr hBarcode, int iMaxCount);
-
-        [DllImport("DynamsoftBarcodeReader")]
         public static extern int DBR_FreeTextResults(ref IntPtr pBarcodeResultArray);
-
-        [DllImport("DynamsoftBarcodeReader")]
-        public static extern void DBR_SetBarcodeTextEncoding(IntPtr hBarcode, BarcodeTextEncoding emEncoding);
 
         [DllImport("DynamsoftBarcodeReader")]
         public static extern void DBR_GetAllTextResults(IntPtr hBarcode, ref IntPtr pBarcodeResultArray);
@@ -150,109 +141,12 @@ namespace DynamsoftBarcode
             public int mBinarizationBlockSize;
         }
 
-        // Dynamsoft Barcode Reader 4.2
-        class LinuxMacBarcodeManager : BarcodeManager
-        {
-            [DllImport("DynamsoftBarcodeReader")]
-            public static extern int DBR_InitLicense(string license);
-
-            [DllImport("DynamsoftBarcodeReader")]
-            public static extern int DBR_DecodeFile(string filename, IntPtr opt, ref IntPtr pBarcodeResultArray);
-
-            [DllImport("DynamsoftBarcodeReader")]
-            public static extern int DBR_FreeBarcodeResults(ref IntPtr pBarcodeResultArray);
-
-            [StructLayout(LayoutKind.Sequential, Pack = 1)]
-            internal struct BarcodeResult
-            {
-                public Int64 llFormat;
-                public string pBarcodeData;
-                public int iBarcodeDataLength;
-                public int iLeft;
-                public int iTop;
-                public int iWidth;
-                public int iHeight;
-                public int iX1;
-                public int iY1;
-                public int iX2;
-                public int iY2;
-                public int iX3;
-                public int iY3;
-                public int iX4;
-                public int iY4;
-                public int iPageNum;
-            }
-
-            [StructLayout(LayoutKind.Sequential, Pack = 1)]
-            internal struct BarcodeResultArray
-            {
-                public int iBarcodeCount;
-                public IntPtr ppBarcodes;
-            }
-
-            [StructLayout(LayoutKind.Sequential, Pack = 1)]
-            public struct ReaderOptions
-            {
-                public int iMaxBarcodesNumPerPage;
-                public long llBarcodeFormat;
-            }
-
-            // Supported barcode formats
-            public static string GetFormatStr(long format)
-            {
-                if (format == CODE_39)
-                    return "CODE_39";
-                if (format == CODE_128)
-                    return "CODE_128";
-                if (format == CODE_93)
-                    return "CODE_93";
-                if (format == CODABAR)
-                    return "CODABAR";
-                if (format == ITF)
-                    return "ITF";
-                if (format == UPC_A)
-                    return "UPC_A";
-                if (format == UPC_E)
-                    return "UPC_E";
-                if (format == EAN_13)
-                    return "EAN_13";
-                if (format == EAN_8)
-                    return "EAN_8";
-                if (format == INDUSTRIAL_25)
-                    return "INDUSTRIAL_25";
-                if (format == QR_CODE)
-                    return "QR_CODE";
-                if (format == PDF417)
-                    return "PDF417";
-                if (format == DATAMATRIX)
-                    return "DATAMATRIX";
-
-                return "UNKNOWN";
-            }
-
-            const long OneD = 0x3FFL;
-            const long CODE_39 = 0x1L;
-            const long CODE_128 = 0x2L;
-            const long CODE_93 = 0x4L;
-            const long CODABAR = 0x8L;
-            const long ITF = 0x10L;
-            const long EAN_13 = 0x20L;
-            const long EAN_8 = 0x40L;
-            const long UPC_A = 0x80L;
-            const long UPC_E = 0x100L;
-            const long INDUSTRIAL_25 = 0x200L;
-            const long PDF417 = 0x2000000L;
-            const long DATAMATRIX = 0x8000000L;
-            const long QR_CODE = 0x4000000L;
-        }
-
         class Program
         {
             static void Main(string[] args)
             {
-                // Console.WriteLine("Please enter an image file: ");
-                // string filename = Console.ReadLine();
-                string filename = "test.tif";
+                Console.WriteLine("Please enter an image file: ");
+                string filename = Console.ReadLine();
                 IntPtr pBarcodeResultArray = IntPtr.Zero;
                 int iFormat = 0x3FF | 0x2000000 | 0x4000000 | 0x8000000 | 0x10000000; // 1D, PDF417, QRCODE, DataMatrix, AZTEC
                 string license = null;
