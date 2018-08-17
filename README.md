@@ -1,6 +1,9 @@
 # .NET Core Barcode Reader
 The sample shows how to use [Dynamsoft Barcode Reader SDK][0] to build a **.NET Core** barcode app for **Windows**, **Linux**, and **macOS**.
 
+## License
+Apply for the [trial license](https://www.dynamsoft.com/CustomerPortal/Portal/Triallicense.aspx).
+
 ## Getting Started with .NET Core
 * [Windows](https://www.microsoft.com/net/core#windowscmd)
 * [Linux](https://www.microsoft.com/net/core#linuxubuntu)
