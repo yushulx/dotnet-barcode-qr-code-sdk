@@ -7,7 +7,7 @@ The sample shows how to use [Dynamsoft Barcode Reader SDK][0] to build a **.NET 
 * [Mac](https://www.microsoft.com/net/core#macos)
 
 ## How to Run the Demo
-1. Download [Dynamsoft Barcode Package][1], which includes **DynamsoftBarcodeReader.dll**, **libDynamsoftBarcodeReader.so** and **libDynamsoftBarcodeReader.dylib**.
+1. Download [Dynamsoft Barcode Reader SDK][1].
 2. Copy the libraries to the project root folder.
 3. Run the commands:
 
@@ -15,12 +15,15 @@ The sample shows how to use [Dynamsoft Barcode Reader SDK][0] to build a **.NET 
     dotnet restore
     dotnet run
     ```
-    ![dotnet core build](http://www.codepool.biz/wp-content/uploads/2017/05/dotnetcore-bin.PNG)
-    ![dotnet core barcode](http://www.codepool.biz/wp-content/uploads/2017/05/dotnet-core-barcode.PNG)
+
+    ![dotnet core build](https://www.codepool.biz/wp-content/uploads/2017/05/dotnetcore-bin.PNG)
+
+    ![dotnet core barcode](https://www.codepool.biz/wp-content/uploads/2017/05/dotnet-core-barcode.PNG)
+    
     
 ## Blog
-[React: Load Global JavaScript Library with Webpack](2)
+[.NET Core Barcode Reader for Windows, Linux & macOS](https://www.codepool.biz/net-core-barcode-app.html)
 
 [0]:http://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx
-[1]:https://www.dynamsoft.com/Downloads/DownloadLog.aspx?server=1&product=Barcode/DBR-Libs.zip
-[2]:http://www.codepool.biz/react-webpack-load-javascript-library.html
+[1]:https://www.dynamsoft.com/Downloads/Dynamic-Barcode-Reader-Download.aspx
+

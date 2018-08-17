@@ -40,10 +40,10 @@ namespace DynamsoftBarcode
             BF_UPC_A = 0x80,
             BF_UPC_E = 0x100,
             BF_INDUSTRIAL_25 = 0x200,
-
             BF_PDF417 = 0x2000000,
             BF_QR_CODE = 0x4000000,
-            BF_DATAMATRIX = 0x8000000
+            BF_DATAMATRIX = 0x8000000,
+            BF_AZTEC = 0x10000000
         }
 
         [DllImport("DynamsoftBarcodeReader")]
@@ -53,10 +53,10 @@ namespace DynamsoftBarcode
         public static extern void DBR_DestroyInstance(IntPtr hBarcode);
 
         [DllImport("DynamsoftBarcodeReader")]
-        public static extern int DBR_InitLicenseEx(IntPtr hBarcode, string license);
+        public static extern int DBR_InitLicense(IntPtr hBarcode, string license);
 
         [DllImport("DynamsoftBarcodeReader")]
-        public static extern int DBR_DecodeFileEx(IntPtr hBarcode, string filename, ref IntPtr pBarcodeResultArray);
+        public static extern int DBR_DecodeFile(IntPtr hBarcode, string filename, string template);
 
         [DllImport("DynamsoftBarcodeReader")]
         public static extern int DBR_SetBarcodeFormats(IntPtr hBarcode, int iFormat);
@@ -65,35 +65,23 @@ namespace DynamsoftBarcode
         public static extern int DBR_SetMaxBarcodesNumPerPage(IntPtr hBarcode, int iMaxCount);
 
         [DllImport("DynamsoftBarcodeReader")]
-        public static extern int DBR_FreeBarcodeResults(ref IntPtr pBarcodeResultArray);
+        public static extern int DBR_FreeTextResults(ref IntPtr pBarcodeResultArray);
 
         [DllImport("DynamsoftBarcodeReader")]
         public static extern void DBR_SetBarcodeTextEncoding(IntPtr hBarcode, BarcodeTextEncoding emEncoding);
 
+        [DllImport("DynamsoftBarcodeReader")]
+        public static extern void DBR_GetAllTextResults(IntPtr hBarcode, ref IntPtr pBarcodeResultArray);
+
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         internal struct BarcodeResult
         {
-            public int emBarcodeFormat;
-            public string pBarcodeData;
-            public int iBarcodeDataLength;
-            public int iLeft;
-            public int iTop;
-            public int iWidth;
-            public int iHeight;
-            public int iX1;
-            public int iY1;
-            public int iX2;
-            public int iY2;
-            public int iX3;
-            public int iY3;
-            public int iX4;
-            public int iY4;
-            public int iPageNum;
-            public IntPtr pBarcodeText;
-            public int iAngle;
-            public int iModuleSize;
-            public int bIsUnrecognized;
-            public string pBarcodeFormatString;
+            BarcodeFormat emBarcodeFormat;
+            public string pszBarcodeFormatString;
+            public string pszBarcodeText;
+            public IntPtr pBarcodeBytes;
+            public int nBarcodeBytesLength;
+            public IntPtr pLocalizationResult;
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -208,114 +196,58 @@ namespace DynamsoftBarcode
         {
             Console.WriteLine("Please enter an image file: ");
             string filename = Console.ReadLine();
-
             IntPtr pBarcodeResultArray = IntPtr.Zero;
-            int iFormat = 0x3FF | 0x2000000 | 0x8000000 | 0x4000000; // 1D, QRCODE, PDF417, DataMatrix
-            int iMaxCount = 0x7FFFFFFF;
+            int iFormat = 0x3FF | 0x2000000 | 0x4000000 | 0x8000000 | 0x10000000; // 1D, PDF417, QRCODE, DataMatrix, AZTEC
             string license = null;
 
-            int iOS = -1;
             // Check supported platforms
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                iOS = BarcodeManager.OS_WIN;
-                license = "t0260NQAAALGw+aCAePXdOS3p1xkqT5hesExKVpEe7NiIhkdlUz/Jvx8km3ItI0ykUcmeP67BYVlJ2PDW++bjSYmDLmyMgOmmvc0mdvhlSy500kqnLoBAL+TybcdAP42b5p5WehK9Gsmweqi+ydK6B0KaUNQMDJZ1DrnhDXZ209pfpJoVybPk/CMcDKXaF2oRLKEOYVscXTF6mbiWUnMP5lj4OdTvFa0eVRcE0q9BckiqYgUZLK4L6DVgRXWRL5nRPtvEtd+qZe6psu0JZ7HEPhsbodfAVH2G436z1QahLGJXdQCoQv8UQ/quGQP2wCWemfueeKJ4Y6WsvEvmkUpizbTOE3Njjaw=";
+                license = "t0068NQAAAAjddDOuMLYaaTayn16mZ2Kfjyw3cZriG1f6s7AASS8ZWJGGJx6zi9iiebnAMNux5fJ2PGOVx70X+MUfVKGBs0g=";
             }
             else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                iOS = BarcodeManager.OS_LINUX;
-                license = "30771C7C2299A4271A84011B981A3901";
+                license = "t0068NQAAAGykzcdt3HeyfcKCCoT4mBuIi1TMkIQ5s7HAAOIOuyjtgpsVmPDSIb/9iAbGknChQMbpV9LCXquugQlL5qsfE3I=";
             }
             else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                iOS = BarcodeManager.OS_MAC;
                 license = "30771C7C2299A427B5765EB4250FC51B";
             }
 
-            switch (iOS)
+            // Initialize Dynamsoft Barcode Reader
+            IntPtr hBarcode = WinBarcodeManager.DBR_CreateInstance();
+
+            // Set a valid license
+            WinBarcodeManager.DBR_InitLicense(hBarcode, license);
+
+            // Read barcodes
+            int ret = WinBarcodeManager.DBR_DecodeFile(hBarcode, filename, "");
+
+            WinBarcodeManager.DBR_GetAllTextResults(hBarcode, ref pBarcodeResultArray);
+
+            // Print barcode results
+            if (pBarcodeResultArray != IntPtr.Zero)
             {
-                case BarcodeManager.OS_WIN:
-                    {
-                        // Initialize Dynamsoft Barcode Reader
-                        IntPtr hBarcode = WinBarcodeManager.DBR_CreateInstance();
+                WinBarcodeManager.BarcodeResultArray results = (WinBarcodeManager.BarcodeResultArray)Marshal.PtrToStructure(pBarcodeResultArray, typeof(WinBarcodeManager.BarcodeResultArray));
+                int count = results.iBarcodeCount;
+                IntPtr[] barcodes = new IntPtr[count];
+                Marshal.Copy(results.ppBarcodes, barcodes, 0, count);
 
-                        // Set a valid license
-                        WinBarcodeManager.DBR_InitLicenseEx(hBarcode, license);
+                for (int i = 0; i < count; i++)
+                {
+                    WinBarcodeManager.BarcodeResult result = (WinBarcodeManager.BarcodeResult)Marshal.PtrToStructure(barcodes[i], typeof(WinBarcodeManager.BarcodeResult));
 
-                        // Set an encoding type
-                        WinBarcodeManager.DBR_SetBarcodeTextEncoding(hBarcode, WinBarcodeManager.BarcodeTextEncoding.BTE_UTF8);
+                    Console.WriteLine("Value: " + result.pszBarcodeText);
+                    Console.WriteLine("Format: " + result.pszBarcodeFormatString);
+                    Console.WriteLine("-----------------------------");
+                }
 
-                        // Set barcode formats
-                        WinBarcodeManager.DBR_SetBarcodeFormats(hBarcode, iFormat);
-                        WinBarcodeManager.DBR_SetMaxBarcodesNumPerPage(hBarcode, iMaxCount);
-
-                        // Read barcodes
-                        int ret = WinBarcodeManager.DBR_DecodeFileEx(hBarcode, filename, ref pBarcodeResultArray);
-
-                        // Print barcode results
-                        if (pBarcodeResultArray != IntPtr.Zero)
-                        {
-                            WinBarcodeManager.BarcodeResultArray results = (WinBarcodeManager.BarcodeResultArray)Marshal.PtrToStructure(pBarcodeResultArray, typeof(WinBarcodeManager.BarcodeResultArray));
-                            int count = results.iBarcodeCount;
-                            IntPtr[] barcodes = new IntPtr[count];
-                            Marshal.Copy(results.ppBarcodes, barcodes, 0, count);
-
-                            for (int i = 0; i < count; i++)
-                            {
-                                WinBarcodeManager.BarcodeResult result = (WinBarcodeManager.BarcodeResult)Marshal.PtrToStructure(barcodes[i], typeof(WinBarcodeManager.BarcodeResult));
-
-                                Console.WriteLine("Value: " + Marshal.PtrToStringUni(result.pBarcodeText));
-                                Console.WriteLine("Format: " + result.pBarcodeFormatString);
-                                Console.WriteLine("-----------------------------");
-                            }
-
-                            // Release memory of barcode results
-                            WinBarcodeManager.DBR_FreeBarcodeResults(ref pBarcodeResultArray);
-                        }
-
-                        // Destroy Dynamsoft Barcode Reader
-                        WinBarcodeManager.DBR_DestroyInstance(hBarcode);
-                    }
-                    break;
-                case BarcodeManager.OS_LINUX:
-                case BarcodeManager.OS_MAC:
-                    {
-                        // Set a valid license
-                        LinuxMacBarcodeManager.DBR_InitLicense(license);
-                        LinuxMacBarcodeManager.ReaderOptions ro = new LinuxMacBarcodeManager.ReaderOptions();
-                        ro.llBarcodeFormat = iFormat;
-                        ro.iMaxBarcodesNumPerPage = iMaxCount;
-
-                        // Copy the struct to unmanaged memory.
-                        IntPtr opt = Marshal.AllocHGlobal(Marshal.SizeOf(ro));
-                        Marshal.StructureToPtr(ro, opt, false);
-
-                        // Read barcodes
-                        int ret = LinuxMacBarcodeManager.DBR_DecodeFile(filename, opt, ref pBarcodeResultArray);
-
-                        // Print barcode results
-                        if (pBarcodeResultArray != IntPtr.Zero)
-                        {
-                            LinuxMacBarcodeManager.BarcodeResultArray results = (LinuxMacBarcodeManager.BarcodeResultArray)Marshal.PtrToStructure(pBarcodeResultArray, typeof(LinuxMacBarcodeManager.BarcodeResultArray));
-                            int count = results.iBarcodeCount;
-                            IntPtr[] barcodes = new IntPtr[count];
-                            Marshal.Copy(results.ppBarcodes, barcodes, 0, count);
-
-                            for (int i = 0; i < count; i++)
-                            {
-                                LinuxMacBarcodeManager.BarcodeResult result = (LinuxMacBarcodeManager.BarcodeResult)Marshal.PtrToStructure(barcodes[i], typeof(LinuxMacBarcodeManager.BarcodeResult));
-
-                                Console.WriteLine("Value: " + result.pBarcodeData);
-                                Console.WriteLine("Format: " + LinuxMacBarcodeManager.GetFormatStr(result.llFormat));
-                                Console.WriteLine("-----------------------------");
-                            }
-
-                            // Release memory of barcode results
-                            LinuxMacBarcodeManager.DBR_FreeBarcodeResults(ref pBarcodeResultArray);
-                        }
-                    }
-                    break;
+                // Release memory of barcode results
+                WinBarcodeManager.DBR_FreeTextResults(ref pBarcodeResultArray);
             }
+
+            // Destroy Dynamsoft Barcode Reader
+            WinBarcodeManager.DBR_DestroyInstance(hBarcode);
         }
     }
 }
