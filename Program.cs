@@ -291,7 +291,7 @@ namespace DynamsoftBarcode
             {
                 Console.WriteLine("Please enter an image file: ");
                 string filename = Console.ReadLine();
-                IntPtr pBarcodeResultArray = IntPtr.Zero;
+                IntPtr pTextResultArray = IntPtr.Zero;
                 //int iFormat = 0x3FF | 0x2000000 | 0x4000000 | 0x8000000 | 0x10000000; // 1D, PDF417, QRCODE, DataMatrix, AZTEC
                 string license = "LICENSE-KEY";
 
