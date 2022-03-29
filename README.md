@@ -107,13 +107,13 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
     ```
 
 ## Example
-- [command-line](example/command-line)
+- [command-line](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/command-line)
     
     ```bash
     dotnet restore
     dotnet run
     ```
-- [desktop-gui](example/desktop-gui)
+- [desktop-gui](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/desktop-gui)
     
     ```bash
     dotnet restore
