@@ -120,7 +120,7 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
     dotnet run
     ```
     
-    ![.NET 6 Desktop barcode and QR code reader](https://www.codepool.biz/wp-content/uploads/2019/11/net-core-barcode-reader.png)
+    ![.NET 6 Desktop barcode and QR code reader](https://camo.githubusercontent.com/0218813daf4f27916d51d7104c56e89c0e3797eea8a6bc4e8b351654912d24ee/68747470733a2f2f7777772e636f6465706f6f6c2e62697a2f77702d636f6e74656e742f75706c6f6164732f323031392f31312f6e65742d636f72652d626172636f64652d7265616465722e706e67)
 
 
 ## Building NuGet Package from Source Code
