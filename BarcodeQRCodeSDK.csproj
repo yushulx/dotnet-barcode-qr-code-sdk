@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>BarcodeQRCodeSDK</PackageId>
+    <Version>1.0.9</Version>
+    <Authors>yushulx</Authors>
+    <Company>Dynamsoft</Company>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="example\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None CopyToOutputDirectory="Always" Include="DynamsoftBarcodeReader.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftBarcodeReader.dll" />
+    <None CopyToOutputDirectory="Always" Include="vcomp110.dll" Pack="true" PackagePath="runtimes/win-x64/native/vcomp110.dll" />
+    <None CopyToOutputDirectory="Always" Include="libDynamsoftBarcodeReader.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/libDynamsoftBarcodeReader.dylib" />
+    <None CopyToOutputDirectory="Always" Include="libDynamsoftBarcodeReader.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftBarcodeReader.so" />
+  </ItemGroup>
+</Project>
