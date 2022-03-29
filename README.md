@@ -1,5 +1,5 @@
 # .NET 6 Barcode and QR Code Reader SDK
-The .NET 6 Barcode and QR Code Reader SDK is a C++/CLI wrapper for [Dynamsoft C++ Barcode Reader SDK]((https://www.dynamsoft.com/barcode-reader/sdk-desktop-server/)).
+The .NET 6 Barcode and QR Code Reader SDK is a C++/CLI wrapper for [Dynamsoft C++ Barcode Reader SDK](https://www.dynamsoft.com/barcode-reader/sdk-desktop-server/).
 
 ## SDK Version
 [v9.0](https://www.dynamsoft.com/barcode-reader/downloads//#desktop)
