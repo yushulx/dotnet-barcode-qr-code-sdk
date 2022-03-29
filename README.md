@@ -58,6 +58,8 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
 - `public static BarcodeQRCodeReader Create()`
 - `public string[]? DecodeFile(string filename)`
 - `public string[]? DecodeBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)`
+- `public string[]? DecodeBase64(string base64string)`
+
 ## Usage
 - Set the license key:
     
@@ -74,7 +76,12 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
     ```csharp
     string[]? results = reader.DecodeFile(filename);
     ```    
-
+- Decode barcode and QR code from a base64 string:
+    
+    ```csharp
+    string[]? results = reader.DecodeBase64(base64string);
+    ```     
+    
 - Decode barcode and QR code from a buffer:
     
     ```csharp

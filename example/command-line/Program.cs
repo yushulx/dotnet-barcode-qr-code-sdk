@@ -36,7 +36,10 @@ namespace Test
                             Console.WriteLine(result);
                         }
                     }
-                };
+                    else {
+                        Console.WriteLine("No barcode found.");
+                    }
+                }
             }
             catch (Exception e)
             {

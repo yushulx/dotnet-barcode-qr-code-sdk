@@ -219,6 +219,9 @@ public class BarcodeQRCodeReader
     [DllImport("DynamsoftBarcodeReader")]
     static extern int DBR_DecodeBuffer(IntPtr hBarcode, IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format, string template);
 
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern int DBR_DecodeBase64String(IntPtr hBarcode, string base64string, string template);
+
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     internal struct PTextResult
     {
@@ -257,16 +260,19 @@ public class BarcodeQRCodeReader
             if (results != null)
             {
                 int count = results.Value.resultsCount;
-                IntPtr[] barcodes = new IntPtr[count];
-                Marshal.Copy(results.Value.results, barcodes, 0, count);
-                resultArray = new string[count];
-
-                for (int i = 0; i < count; i++)
+                if (count > 0)
                 {
-                    PTextResult? result = (PTextResult?)Marshal.PtrToStructure(barcodes[i], typeof(PTextResult));
-                    if (result != null)
+                    IntPtr[] barcodes = new IntPtr[count];
+                    Marshal.Copy(results.Value.results, barcodes, 0, count);
+                    resultArray = new string[count];
+
+                    for (int i = 0; i < count; i++)
                     {
-                        resultArray[i] = result.Value.barcodeText;
+                        PTextResult? result = (PTextResult?)Marshal.PtrToStructure(barcodes[i], typeof(PTextResult));
+                        if (result != null)
+                        {
+                            resultArray[i] = result.Value.barcodeText;
+                        }
                     }
                 }
             }
@@ -293,6 +299,14 @@ public class BarcodeQRCodeReader
         if (hBarcode == IntPtr.Zero) return null;
 
         int ret = DBR_DecodeBuffer(hBarcode, pBufferBytes, width, height, stride, format, "");
+        return OutputResults();
+    }
+
+    public string[]? DecodeBase64(string base64string)
+    {
+        if (hBarcode == IntPtr.Zero) return null;
+
+        int ret = DBR_DecodeBase64String(hBarcode, base64string, "");
         return OutputResults();
     }
 }
