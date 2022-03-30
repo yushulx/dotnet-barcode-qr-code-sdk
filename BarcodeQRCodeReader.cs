@@ -222,6 +222,9 @@ public class BarcodeQRCodeReader
     [DllImport("DynamsoftBarcodeReader")]
     static extern int DBR_DecodeBase64String(IntPtr hBarcode, string base64string, string template);
 
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern IntPtr DBR_GetVersion();
+
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     internal struct PTextResult
     {
@@ -245,6 +248,11 @@ public class BarcodeQRCodeReader
     {
         public int resultsCount;
         public IntPtr results;
+    }
+
+    public static string? GetVersionInfo()
+    {
+        return Marshal.PtrToStringUTF8(DBR_GetVersion());
     }
 
     private string[]? OutputResults()
