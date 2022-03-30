@@ -120,6 +120,8 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
     dotnet restore
     dotnet run
     ```
+    
+    ![.NET 6 command-line barcode and QR code reader](https://www.dynamsoft.com/codepool/img/2022/03/command-line-dotnet-barcode-qr-code-reader.png)
 - [desktop-gui](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/desktop-gui)
     
     ```bash
