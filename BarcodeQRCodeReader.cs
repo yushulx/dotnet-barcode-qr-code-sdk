@@ -8,44 +8,34 @@ public class BarcodeQRCodeReader
     private IntPtr hBarcode;
     private static string? licenseKey;
 
-    public static void InitLicense(string license) {
-        byte[] errorMsg = new byte[512];
-        licenseKey = license;
-        DBR_InitLicense(license, errorMsg, 512);
-        Console.WriteLine(Encoding.ASCII.GetString(errorMsg) + "\n");
-    }
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern IntPtr DBR_CreateInstance();
 
-    private BarcodeQRCodeReader()
-    {
-        hBarcode = DBR_CreateInstance();
-    }
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern void DBR_DestroyInstance(IntPtr hBarcode);
 
-    public static BarcodeQRCodeReader Create()
-    {
-        if (licenseKey == null)
-        {
-            throw new Exception("Please call InitLicense first.");
-        }
-        return new BarcodeQRCodeReader();
-    }
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern int DBR_InitLicense(string license, [Out] byte[] errorMsg, int errorMsgSize);
 
-    ~BarcodeQRCodeReader()
-    {
-        if (hBarcode != IntPtr.Zero)
-        {
-            DBR_DestroyInstance(hBarcode);
-            hBarcode = IntPtr.Zero;
-        }
-    }
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern int DBR_DecodeFile(IntPtr hBarcode, string filename, string template);
 
-    public void Destroy()
-    {
-        if (hBarcode != IntPtr.Zero)
-        {
-            DBR_DestroyInstance(hBarcode);
-            hBarcode = IntPtr.Zero;
-        }
-    }
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern int DBR_FreeTextResults(ref IntPtr pTextResultArray);
+
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern void DBR_GetAllTextResults(IntPtr hBarcode, ref IntPtr pTextResultArray);
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern int DBR_DecodeBuffer(IntPtr hBarcode, IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format, string template);
+
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern int DBR_DecodeBase64String(IntPtr hBarcode, string base64string, string template);
+
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern IntPtr DBR_GetVersion();
+
+    [DllImport("DynamsoftBarcodeReader")]
+    static extern int DBR_InitRuntimeSettingsWithString(IntPtr barcodeReader, string content, ConflictMode conflictMode, [Out] byte[] errorMsg, int errorMsgSize);
 
     public enum ImagePixelFormat
     {
@@ -198,32 +188,15 @@ public class BarcodeQRCodeReader
         /**No barcode format in BarcodeFormat group 1*/
         BF_NULL = 0x00
     }
+    public enum ConflictMode
+    {
+        /**Ignores new settings and inherits the previous settings. */
+        CM_IGNORE = 1,
 
-    [DllImport("DynamsoftBarcodeReader")]
-    static extern IntPtr DBR_CreateInstance();
+        /**Overwrites the old settings with new settings. */
+        CM_OVERWRITE = 2
 
-    [DllImport("DynamsoftBarcodeReader")]
-    static extern void DBR_DestroyInstance(IntPtr hBarcode);
-
-    [DllImport("DynamsoftBarcodeReader")]
-    static extern int DBR_InitLicense(string license, [Out] byte[] errorMsg, int errorMsgSize);
-
-    [DllImport("DynamsoftBarcodeReader")]
-    static extern int DBR_DecodeFile(IntPtr hBarcode, string filename, string template);
-
-    [DllImport("DynamsoftBarcodeReader")]
-    static extern int DBR_FreeTextResults(ref IntPtr pTextResultArray);
-
-    [DllImport("DynamsoftBarcodeReader")]
-    static extern void DBR_GetAllTextResults(IntPtr hBarcode, ref IntPtr pTextResultArray);
-    [DllImport("DynamsoftBarcodeReader")]
-    static extern int DBR_DecodeBuffer(IntPtr hBarcode, IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format, string template);
-
-    [DllImport("DynamsoftBarcodeReader")]
-    static extern int DBR_DecodeBase64String(IntPtr hBarcode, string base64string, string template);
-
-    [DllImport("DynamsoftBarcodeReader")]
-    static extern IntPtr DBR_GetVersion();
+    }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     internal struct PTextResult
@@ -248,6 +221,46 @@ public class BarcodeQRCodeReader
     {
         public int resultsCount;
         public IntPtr results;
+    }
+
+    public static void InitLicense(string license)
+    {
+        byte[] errorMsg = new byte[512];
+        licenseKey = license;
+        DBR_InitLicense(license, errorMsg, 512);
+        Console.WriteLine("InitLicense(): " + Encoding.ASCII.GetString(errorMsg));
+    }
+
+    private BarcodeQRCodeReader()
+    {
+        hBarcode = DBR_CreateInstance();
+    }
+
+    public static BarcodeQRCodeReader Create()
+    {
+        if (licenseKey == null)
+        {
+            throw new Exception("Please call InitLicense first.");
+        }
+        return new BarcodeQRCodeReader();
+    }
+
+    ~BarcodeQRCodeReader()
+    {
+        if (hBarcode != IntPtr.Zero)
+        {
+            DBR_DestroyInstance(hBarcode);
+            hBarcode = IntPtr.Zero;
+        }
+    }
+
+    public void Destroy()
+    {
+        if (hBarcode != IntPtr.Zero)
+        {
+            DBR_DestroyInstance(hBarcode);
+            hBarcode = IntPtr.Zero;
+        }
     }
 
     public static string? GetVersionInfo()
@@ -316,5 +329,14 @@ public class BarcodeQRCodeReader
 
         int ret = DBR_DecodeBase64String(hBarcode, base64string, "");
         return OutputResults();
+    }
+
+    public void SetParameters(string parameters)
+    {
+        if (hBarcode == IntPtr.Zero) return;
+
+        byte[] errorMsg = new byte[512];
+        DBR_InitRuntimeSettingsWithString(hBarcode, parameters, ConflictMode.CM_OVERWRITE, errorMsg, 512);
+        Console.WriteLine("SetParameters(): " + Encoding.ASCII.GetString(errorMsg) + "\n");
     }
 }

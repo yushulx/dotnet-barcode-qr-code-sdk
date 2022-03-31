@@ -59,6 +59,8 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
 - `public string[]? DecodeFile(string filename)`
 - `public string[]? DecodeBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)`
 - `public string[]? DecodeBase64(string base64string)`
+- `public static string? GetVersionInfo()`
+- `public void SetParameters(string parameters)`
 
 ## Usage
 - Set the license key:
@@ -112,6 +114,65 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
     string[]? results = reader.DecodeBuffer(bmpData.Scan0, bitmap.Width, bitmap.Height, bmpData.Stride, format);
     bitmap.UnlockBits(bmpData);
     ```
+- Get SDK version number:
+
+    ```csharp
+    string? version = BarcodeQRCodeReader.GetVersionInfo();
+    ```
+- Customize parameters:
+    
+    ```csharp
+    // Refer to https://www.dynamsoft.com/barcode-reader/parameters/structure-and-interfaces-of-parameters.html?ver=latest
+    reader.SetParameters("{\"Version\":\"3.0\", \"ImageParameter\":{\"Name\":\"IP1\", \"BarcodeFormatIds\":[\"BF_QR_CODE\", \"BF_ONED\"], \"ExpectedBarcodesCount\":20}}");
+    ```
+
+## Quick Start
+
+```csharp
+using System;
+using System.Runtime.InteropServices;
+using Dynamsoft;
+
+namespace Test
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            BarcodeQRCodeReader.InitLicense("LICENSE-KEY"); // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
+            BarcodeQRCodeReader? reader = null;
+            try {
+                reader = BarcodeQRCodeReader.Create();
+                Console.WriteLine("Please enter an image file: ");
+                string? filename = Console.ReadLine();
+                if (filename != null) {
+                    string[]? results = reader.DecodeFile(filename);
+                    if (results != null) {
+                        foreach (string result in results) {
+                            Console.WriteLine(result);
+                        }
+                    }
+                    else {
+                        Console.WriteLine("No barcode found.");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Destroy();
+                }
+            }
+        }
+    }
+}
+```
+
 
 ## Example
 - [command-line](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/command-line)
