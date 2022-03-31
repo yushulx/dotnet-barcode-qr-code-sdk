@@ -182,15 +182,16 @@ namespace Test
     dotnet run
     ```
     
-    ![.NET 6 command-line barcode and QR code reader](https://www.dynamsoft.com/codepool/img/2022/03/command-line-dotnet-barcode-qr-code-reader.png)
-- [desktop-gui](https://camo.githubusercontent.com/5d949263555d882e444583cd6617b59e1c39f4fe259a89fb9b2164a7d3d79407/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30332f636f6d6d616e642d6c696e652d646f746e65742d626172636f64652d71722d636f64652d7265616465722e706e67)
+    ![.NET 6 command-line barcode and QR code reader](https://camo.githubusercontent.com/5d949263555d882e444583cd6617b59e1c39f4fe259a89fb9b2164a7d3d79407/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30332f636f6d6d616e642d6c696e652d646f746e65742d626172636f64652d71722d636f64652d7265616465722e706e67)
+
+- [desktop-gui](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/desktop-gui)
     
     ```bash
     dotnet restore
     dotnet run
     ```
     
-    ![.NET 6 Desktop barcode and QR code reader](https://camo.githubusercontent.com/0218813daf4f27916d51d7104c56e89c0e3797eea8a6bc4e8b351654912d24ee/68747470733a2f2f7777772e636f6465706f6f6c2e62697a2f77702d636f6e74656e742f75706c6f6164732f323031392f31312f6e65742d636f72652d626172636f64652d7265616465722e706e67)
+    ![.NET 6 Desktop barcode and QR code reader](https://www.dynamsoft.com/codepool/img/2022/03/desktop-dotnet-barcode-qr-code-reader.png)
 
 
 ## Building NuGet Package from Source Code
