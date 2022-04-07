@@ -200,7 +200,7 @@ namespace Test
     dotnet run
     ```
     
-    ![ASP.NET online barcode and QR code reader](https://www.dynamsoft.com/codepool/img/2022/04/asp-net-barcode-qr-code-scan.png)
+    ![ASP.NET online barcode and QR code reader](https://camo.githubusercontent.com/cf68ff6cadf563cb52b6d759d262ea44c5922d1bdc7c039027a70386e8763f10/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30342f6173702d6e65742d626172636f64652d71722d636f64652d7363616e2e706e67)
     
 ## Building NuGet Package from Source Code
 
