@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <!-- <PackageReference Include="BarcodeQRCodeSDK" Version="1.0.9" /> -->
+    <!-- <PackageReference Include="BarcodeQRCodeSDK" Version="1.2.0" /> -->
     <ProjectReference Include="..\..\BarcodeQRCodeSDK.csproj" />
   </ItemGroup>
 </Project>
