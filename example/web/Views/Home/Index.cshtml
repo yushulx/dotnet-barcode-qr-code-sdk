@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">ASP.NET Barcode and QR Code Reader</h1>
+    <input type="file" id="file" accept="image/*" name="barcodeImage"/>
+    <button id="btn-scan" onclick="upload()">Scan</button>
+    <br>
+    <img id="image" height="400"/>
+</div>
+
+<script>
+    document.getElementById("file").addEventListener("change", function () {
+        let file = this.files[0];
+        let image = document.getElementById('image');
+        let reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            image.src = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function upload() {
+        const host = location.hostname
+        const protocol = location.protocol
+        const uploadPath = '/upload'
+        let xhr = new XMLHttpRequest();
+        let formData = new FormData();
+        let file = document.getElementById('file').files[0];
+        formData.append('barcodeImage', file, file.name);
+        xhr.open('POST', uploadPath, true);
+        xhr.send(formData);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                alert(xhr.responseText);
+            }
+        }
+    }
+</script>
