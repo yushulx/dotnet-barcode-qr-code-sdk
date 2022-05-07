@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>BarcodeQRCodeSDK</PackageId>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <Authors>yushulx</Authors>
     <Company>Dynamsoft</Company>
     <TargetFramework>net6.0</TargetFramework>
@@ -26,10 +26,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None CopyToOutputDirectory="Always" Include="DynamsoftBarcodeReader.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftBarcodeReader.dll" />
-    <None CopyToOutputDirectory="Always" Include="vcomp110.dll" Pack="true" PackagePath="runtimes/win-x64/native/vcomp110.dll" />
-    <None CopyToOutputDirectory="Always" Include="libDynamsoftBarcodeReader.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/libDynamsoftBarcodeReader.dylib" />
-    <None CopyToOutputDirectory="Always" Include="libDynamsoftBarcodeReader.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftBarcodeReader.so" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/DynamsoftBarcodeReader.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftBarcodeReader.dll"  />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/DynamsoftLicenseClientx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftLicenseClientx64.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/vcomp110.dll" Pack="true" PackagePath="runtimes/win-x64/native/vcomp110.dll" />
+
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/macos/libDynamsoftBarcodeReader.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/libDynamsoftBarcodeReader.dylib" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/macos/libDynamsoftLicenseClient.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/libDynamsoftLicenseClient.dylib" />
+
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/linux/libDynamsoftBarcodeReader.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftBarcodeReader.so" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/linux/libDynamsoftLicenseClient.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftLicenseClient.so" />
   </ItemGroup>
 
   <ItemGroup>
