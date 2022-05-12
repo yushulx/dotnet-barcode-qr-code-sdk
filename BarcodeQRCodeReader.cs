@@ -5,6 +5,14 @@ using System.Runtime.InteropServices;
 
 public class BarcodeQRCodeReader
 {
+    public class Result
+    {
+        public string? Text { get; set; }
+        public int[]? Points { get; set; }
+        public string? Format1 { get; set; }
+        public string? Format2 { get; set; }
+    }
+
     private IntPtr hBarcode;
     private static string? licenseKey;
 
@@ -198,21 +206,127 @@ public class BarcodeQRCodeReader
 
     }
 
+    public enum ResultCoordinateType
+    {
+        /**Returns the coordinate in pixel value. */
+        RCT_PIXEL = 0x01,
+
+        /**Returns the coordinate as a percentage. */
+        RCT_PERCENTAGE = 0x02
+    }
+
+    public enum TerminatePhase
+    {
+        /**Exits the barcode reading algorithm after the region predetection is done. */
+        TP_REGION_PREDETECTED = 0x00000001,
+
+        /**Exits the barcode reading algorithm after the region predetection and image pre-processing is done. */
+        TP_IMAGE_PREPROCESSED = 0x00000002,
+
+        /**Exits the barcode reading algorithm after the region predetection, image pre-processing, and image binarization are done. */
+        TP_IMAGE_BINARIZED = 0x00000004,
+
+        /**Exits the barcode reading algorithm after the region predetection, image pre-processing, image binarization, and barcode localization are done. */
+        TP_BARCODE_LOCALIZED = 0x00000008,
+
+        /**Exits the barcode reading algorithm after the region predetection, image pre-processing, image binarization, barcode localization, and barcode type determining are done. */
+        TP_BARCODE_TYPE_DETERMINED = 0x00000010,
+
+        /**Exits the barcode reading algorithm after the region predetection, image pre-processing, image binarization, barcode localization, barcode type determining, and barcode recognition are done. */
+        TP_BARCODE_RECOGNIZED = 0x00000020
+
+    }
+
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     internal struct PTextResult
     {
         BarcodeFormat emBarcodeFormat;
         public string barcodeFormatString;
         BarcodeFormat_2 barcodeFormat_2;
-        string barcodeFormatString_2;
+        public string barcodeFormatString_2;
         public string barcodeText;
         IntPtr barcodeBytes;
         int barcodeBytesLength;
-        IntPtr localizationResult;
+        public IntPtr localizationResult;
         IntPtr detailedResult;
         int resultsCount;
         IntPtr results;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 56)]
+        char[] reserved;
+    }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    internal struct LocalizationResult
+    {
+        /**The terminate phase of localization result. */
+        TerminatePhase terminatePhase;
+
+        /**Barcode type in BarcodeFormat group 1 */
+        BarcodeFormat barcodeFormat;
+
+        /**Barcode type in BarcodeFormat group 1 as string */
+        public string barcodeFormatString;
+
+        /**Barcode type in BarcodeFormat group 2*/
+        BarcodeFormat_2 barcodeFormat_2;
+
+        /**Barcode type in BarcodeFormat group 2 as string */
+        public string barcodeFormatString_2;
+
+        /**The X coordinate of the left-most point */
+        public int x1;
+
+        /**The Y coordinate of the left-most point */
+        public int y1;
+
+        /**The X coordinate of the second point in a clockwise direction */
+        public int x2;
+
+        /**The Y coordinate of the second point in a clockwise direction */
+        public int y2;
+
+        /**The X coordinate of the third point in a clockwise direction */
+        public int x3;
+
+        /**The Y coordinate of the third point in a clockwise direction */
+        public int y3;
+
+        /**The X coordinate of the fourth point in a clockwise direction */
+        public int x4;
+
+        /**The Y coordinate of the fourth point in a clockwise direction */
+        public int y4;
+
+        /**The angle of a barcode. Values range is from 0 to 360. */
+        int angle;
+
+        /**The barcode module size (the minimum bar width in pixel) */
+        int moduleSize;
+
+        /**The page number the barcode located in. The index is 0-based. */
+        int pageNumber;
+
+        /**The region name the barcode located in. */
+        public string regionName;
+
+        /**The document name */
+        public string documentName;
+
+        /**The coordinate type */
+        ResultCoordinateType resultCoordinateType;
+
+        /**The accompanying text content in a byte array */
+        IntPtr accompanyingTextBytes;
+
+        /**The length of the accompanying text byte array */
+        int accompanyingTextBytesLength;
+
+        /**The confidence of the localization result*/
+        int confidence;
+
+        /**Reserved memory for the struct. The length of this array indicates the size of the memory reserved for this struct. */
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 52)]
         char[] reserved;
     }
 
@@ -268,7 +382,7 @@ public class BarcodeQRCodeReader
         return Marshal.PtrToStringUTF8(DBR_GetVersion());
     }
 
-    private string[]? OutputResults()
+    private Result[]? OutputResults()
     {
         IntPtr pTextResultArray = IntPtr.Zero;
 
@@ -276,7 +390,7 @@ public class BarcodeQRCodeReader
 
         if (pTextResultArray != IntPtr.Zero)
         {
-            string[]? resultArray = null;
+            Result[]? resultArray = null;
             TextResultArray? results = (TextResultArray?)Marshal.PtrToStructure(pTextResultArray, typeof(TextResultArray));
             if (results != null)
             {
@@ -285,14 +399,23 @@ public class BarcodeQRCodeReader
                 {
                     IntPtr[] barcodes = new IntPtr[count];
                     Marshal.Copy(results.Value.results, barcodes, 0, count);
-                    resultArray = new string[count];
+                    resultArray = new Result[count];
 
                     for (int i = 0; i < count; i++)
                     {
                         PTextResult? result = (PTextResult?)Marshal.PtrToStructure(barcodes[i], typeof(PTextResult));
                         if (result != null)
                         {
-                            resultArray[i] = result.Value.barcodeText;
+                            Result r = new Result();
+                            resultArray[i] = r;
+                            r.Text = result.Value.barcodeText;
+                            r.Format1 = result.Value.barcodeFormatString;
+                            r.Format2 = result.Value.barcodeFormatString_2;
+                            LocalizationResult? localizationResult = (LocalizationResult?)Marshal.PtrToStructure(result.Value.localizationResult, typeof(LocalizationResult));
+                            if (localizationResult != null)
+                            {
+                                r.Points = new int[8] { localizationResult.Value.x1, localizationResult.Value.y1, localizationResult.Value.x2, localizationResult.Value.y2, localizationResult.Value.x3, localizationResult.Value.y3, localizationResult.Value.x4, localizationResult.Value.y4 };
+                            }
                         }
                     }
                 }
@@ -307,7 +430,7 @@ public class BarcodeQRCodeReader
         return null;
     }
 
-    public string[]? DecodeFile(string filename)
+    public Result[]? DecodeFile(string filename)
     {
         if (hBarcode == IntPtr.Zero) return null;
 
@@ -315,7 +438,7 @@ public class BarcodeQRCodeReader
         return OutputResults();
     }
 
-    public string[]? DecodeBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)
+    public Result[]? DecodeBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)
     {
         if (hBarcode == IntPtr.Zero) return null;
 
@@ -323,7 +446,7 @@ public class BarcodeQRCodeReader
         return OutputResults();
     }
 
-    public string[]? DecodeBase64(string base64string)
+    public Result[]? DecodeBase64(string base64string)
     {
         if (hBarcode == IntPtr.Zero) return null;
 

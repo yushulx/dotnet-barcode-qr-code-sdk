@@ -58,9 +58,9 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
 ## Methods
 - `public static void InitLicense(string license)`
 - `public static BarcodeQRCodeReader Create()`
-- `public string[]? DecodeFile(string filename)`
-- `public string[]? DecodeBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)`
-- `public string[]? DecodeBase64(string base64string)`
+- `public Result[]? DecodeFile(string filename)`
+- `public Result[]? DecodeBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)`
+- `public Result[]? DecodeBase64(string base64string)`
 - `public static string? GetVersionInfo()`
 - `public void SetParameters(string parameters)`
 
@@ -78,12 +78,12 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
 - Decode barcode and QR code from an image file:
 
     ```csharp
-    string[]? results = reader.DecodeFile(filename);
+    Result[]? results = reader.DecodeFile(filename);
     ```    
 - Decode barcode and QR code from a base64 string:
     
     ```csharp
-    string[]? results = reader.DecodeBase64(base64string);
+    Result[]? results = reader.DecodeBase64(base64string);
     ```     
     
 - Decode barcode and QR code from a buffer:
@@ -113,7 +113,7 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
             break;
     }
 
-    string[]? results = reader.DecodeBuffer(bmpData.Scan0, bitmap.Width, bitmap.Height, bmpData.Stride, format);
+    Result[]? results = reader.DecodeBuffer(bmpData.Scan0, bitmap.Width, bitmap.Height, bmpData.Stride, format);
     bitmap.UnlockBits(bmpData);
     ```
 - Get SDK version number:
@@ -148,10 +148,10 @@ namespace Test
                 Console.WriteLine("Please enter an image file: ");
                 string? filename = Console.ReadLine();
                 if (filename != null) {
-                    string[]? results = reader.DecodeFile(filename);
+                    Result[]? results = reader.DecodeFile(filename);
                     if (results != null) {
-                        foreach (string result in results) {
-                            Console.WriteLine(result);
+                        foreach (Result result in results) {
+                            Console.WriteLine(result.Text);
                         }
                     }
                     else {
@@ -193,7 +193,7 @@ namespace Test
     dotnet run
     ```
     
-    ![.NET 6 Desktop barcode and QR code reader](https://camo.githubusercontent.com/a75baf7c591eb0aad530ccaa0093d26fbf74f358b0c24674783ca42e8f241d6f/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30332f6465736b746f702d646f746e65742d626172636f64652d71722d636f64652d7265616465722e706e67) 
+    ![.NET 6 Desktop barcode and QR code reader](https://www.dynamsoft.com/codepool/img/2022/03/desktop-dotnet-barcode-qr-code-reader.png) 
 
 - [web](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/web)
   

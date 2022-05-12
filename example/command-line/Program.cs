@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Dynamsoft;
+using Result = Dynamsoft.BarcodeQRCodeReader.Result;
 
 namespace Test
 {
@@ -34,10 +35,10 @@ namespace Test
                 Console.WriteLine("Please enter an image file: ");
                 string? filename = Console.ReadLine();
                 if (filename != null) {
-                    string[]? results = reader.DecodeFile(filename);
+                    Result[]? results = reader.DecodeFile(filename);
                     if (results != null) {
-                        foreach (string result in results) {
-                            Console.WriteLine(result);
+                        foreach (Result result in results) {
+                            Console.WriteLine(result.Text);
                         }
                     }
                     else {

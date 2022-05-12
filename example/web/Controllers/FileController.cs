@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Dynamsoft;
+using Result = Dynamsoft.BarcodeQRCodeReader.Result;
 
 namespace MvcBarcodeQRCode.Controllers
 {
@@ -33,13 +34,13 @@ namespace MvcBarcodeQRCode.Controllers
                 }
                 if (reader != null)
                 {
-                    var results = reader.DecodeFile(filePath);
+                    Result[]? results = reader.DecodeFile(filePath);
                     if (results != null)
                     {
                         output = "";
-                        foreach (string result in results)
+                        foreach (Result result in results)
                         {
-                            output += result + "\n";
+                            output += result.Text + "\n";
                         }
                     }
                     else
