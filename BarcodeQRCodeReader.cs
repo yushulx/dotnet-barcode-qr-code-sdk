@@ -339,6 +339,22 @@ public class BarcodeQRCodeReader
 
     public static void InitLicense(string license)
     {
+        string dir = Directory.GetCurrentDirectory();
+        string[] files = Directory.GetDirectories(dir, "runtimes", SearchOption.AllDirectories);
+        // Check supported platforms
+        if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            Directory.SetCurrentDirectory(files[0] + "/win-x64/native");
+        }
+        else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            Directory.SetCurrentDirectory(files[0] + "/linux-x64/native");
+        }
+        else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            Directory.SetCurrentDirectory(files[0] + "/osx-x64/native");
+        }
+        
         byte[] errorMsg = new byte[512];
         licenseKey = license;
         DBR_InitLicense(license, errorMsg, 512);
