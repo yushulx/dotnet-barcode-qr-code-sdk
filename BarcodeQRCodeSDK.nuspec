@@ -18,7 +18,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="README.md" target="" />
+    <file src="README.md" target="docs\" />
     <file src="LICENSE.txt" target=""/>
     <file src="platform\win\**\*.*" target="runtimes\win-x64\native" />
 
