@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+  ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <MyPlatform Condition="'$(Platform)'=='x64'">x64</MyPlatform>
+
+    <IsWindows Condition="'$(OS)'=='Windows_NT'">true</IsWindows>
+    <IsLinux Condition="'$(OS)'=='Unix' and '$(OS)'!='Darwin'">true</IsLinux>
+    <IsMacOS Condition="'$(OS)'=='Darwin'">true</IsMacOS>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>
+        $(MSBuildThisFileDirectory)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup>
+    <Link Condition="'$(MyPlatform)' == 'x64' and '$(IsWindows)'=='true'">
+      <AdditionalDependencies>DBRx64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+        $(MSBuildThisFileDirectory)\..\..\runtimes\win-x64\native;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup>
+    <Link Condition="'$(MyPlatform)' == 'x64' and '$(IsLinux)'=='true'">
+      <AdditionalDependencies>libDynamsoftBarcodeReader.so;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+        $(MSBuildThisFileDirectory)\..\..\runtimes\linux-x64\native;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup>
+    <Link Condition="'$(MyPlatform)' == 'x64' and '$(IsMacOS)'=='true'">
+      <AdditionalDependencies>libDynamsoftBarcodeReader.dylib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+        $(MSBuildThisFileDirectory)\..\..\runtimes\osx-x64\native;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)\..\..\runtimes\win-x64\native\*.dll"
+      Condition="'$(MyPlatform)' == 'x64' and '$(IsWindows)'=='true'">
+      <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)\..\..\runtimes\linux-x64\native\*.so"
+      Condition="'$(MyPlatform)' == 'x64' and '$(IsLinux)'=='true'">
+      <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)\..\..\runtimes\win-x64\native\*.dylib"
+      Condition="'$(MyPlatform)' == 'x64' and '$(IsMacOS)'=='true'">
+      <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

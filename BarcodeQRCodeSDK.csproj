@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <PackageId>BarcodeQRCodeSDK</PackageId>
-    <Version>2.1.0</Version>
+    <Version>2.2.0</Version>
     <Authors>yushulx</Authors>
     <Company>Dynamsoft</Company>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>The .NET 6 Barcode and QR Code Reader SDK is a C++/CLI wrapper for Dynamsoft C++ Barcode Reader SDK, supporting x64 Windows, x64 Linux and x64 macOS</Description>
+    <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild> -->
+    <Description>The Barcode and QR Code Reader SDK is a wrapper for Dynamsoft C++ Barcode Reader SDK, supporting x64 Windows, x64 Linux and x64 macOS</Description>
     <PackageProjectUrl>https://github.com/yushulx/dotnet-barcode-qr-code-sdk</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/yushulx/dotnet-barcode-qr-code-sdk</RepositoryUrl>

@@ -1,10 +1,10 @@
-# .NET 6 Barcode and QR Code Reader SDK
-![.NET Barcode and QR Code SDK](https://img.shields.io/nuget/v/BarcodeQRCodeSDK)
+# Barcode and QR Code Reader SDK
+![Barcode and QR Code SDK](https://img.shields.io/nuget/v/BarcodeQRCodeSDK)
 
-The .NET 6 Barcode and QR Code Reader SDK is a C++/CLI wrapper for [Dynamsoft C++ Barcode Reader SDK](https://www.dynamsoft.com/barcode-reader/sdk-desktop-server/).
+The Barcode and QR Code Reader SDK is a wrapper for [Dynamsoft C++ Barcode Reader SDK](https://www.dynamsoft.com/barcode-reader/sdk-desktop-server/).
 
-## SDK Version
-[v9.2](https://www.dynamsoft.com/barcode-reader/downloads//#desktop)
+## Dynamsoft Barcode SDK Version
+[v9.6.20](https://www.dynamsoft.com/barcode-reader/downloads//#desktop)
 
 ## License Activation
 Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr) to get a valid license key.
@@ -208,4 +208,5 @@ namespace Test
 
 ```bash
 dotnet build --configuration Release
+nuget pack BarcodeQRCodeReader.nuspec
 ```

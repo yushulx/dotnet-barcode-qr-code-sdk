@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>BarcodeQRCodeSDK</id>
+    <version>2.2.0</version>
+    <title>Barcode and QR Code Reader SDK</title>
+    <authors>yushulx</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/yushulx/dotnet-barcode-qr-code-sdk</projectUrl>
+    <description>The Barcode and QR Code Reader SDK is a wrapper for Dynamsoft C++ Barcode Reader SDK, supporting x64 Windows, x64 Linux and x64 macOS</description>
+    <releaseNotes>Support Android and iOS</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>Native native barcode qrcode Aztec QR Datamatrix PDF417 Code39 Code93 Code128 Codabar Interleaved EAN-8 EAN-13 UPC-A UPC-E GS1Databar PatchCode Maxicode COMPOSITE PostalCode</tags>
+    <dependencies>
+      <!-- <dependency id="Newtonsoft.Json" version="9.0" /> -->
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="README.md" target="" />
+    <file src="LICENSE.txt" target=""/>
+    <file src="platform\win\**\*.*" target="runtimes\win-x64\native" />
+
+    <file src="platform\macos\**\*.*" target="runtimes\osx-x64\native" />
+
+    <file src="platform\linux\**\*.*" target="runtimes\linux-x64\native" />
+  
+    <file src="bin\Release\net6.0\BarcodeQRCodeSDK.dll" target="lib\net6.0" />
+  
+    <file src="include\**\*.*"   target="build\native\include" />
+    <file src="BarcodeQRCodeSDK.targets"   target="build\native" />
+  </files>
+</package>
