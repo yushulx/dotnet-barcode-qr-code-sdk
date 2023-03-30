@@ -1,2 +1,5 @@
 obj
 bin
+packages
+Debug
+.vs
