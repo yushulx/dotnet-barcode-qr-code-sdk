@@ -7,6 +7,7 @@
     <authors>yushulx</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
+    <readme>docs\README.md</readme>
     <!-- <icon>icon.png</icon> -->
     <projectUrl>https://github.com/yushulx/dotnet-barcode-qr-code-sdk</projectUrl>
     <description>The Barcode and QR Code Reader SDK is a wrapper for Dynamsoft C++ Barcode Reader SDK, supporting x64 Windows, x64 Linux and x64 macOS</description>
