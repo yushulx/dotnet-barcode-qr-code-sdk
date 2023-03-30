@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>BarcodeQRCodeSDK</PackageId>
-    <Version>2.2.0</Version>
+    <Version>2.2.1</Version>
     <Authors>yushulx</Authors>
     <Company>Dynamsoft</Company>
     <TargetFramework>net6.0</TargetFramework>
@@ -21,6 +21,10 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
+    <DefineConstants>_WINDOWS</DefineConstants>
+  </PropertyGroup>
+  
   <ItemGroup>
     <Compile Remove="example\**" />
     <None Include="LICENSE" Pack="true" PackagePath=""/>
@@ -28,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/DynamsoftBarcodeReader.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftBarcodeReader.dll"  />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/DynamsoftBarcodeReaderx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftBarcodeReaderx64.dll"  />
     <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/DynamsoftLicenseClientx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftLicenseClientx64.dll" />
     <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/vcomp110.dll" Pack="true" PackagePath="runtimes/win-x64/native/vcomp110.dll" />
 
