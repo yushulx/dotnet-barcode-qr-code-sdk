@@ -3,6 +3,7 @@ using Dynamsoft;
 using Result = Dynamsoft.BarcodeQRCodeReader.Result;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
+using System.Runtime.InteropServices;
 
 namespace Test
 {
@@ -37,7 +38,11 @@ namespace Test
         }
         private Bitmap DecodeMat(Mat mat)
         {
-            Result[]? results = reader.DecodeBuffer(mat.Data, mat.Cols, mat.Rows, (int)mat.Step(), BarcodeQRCodeReader.ImagePixelFormat.IPF_RGB_888);
+            int length = mat.Cols * mat.Rows * mat.ElemSize();
+            byte[] bytes = new byte[length];
+            Marshal.Copy(mat.Data, bytes, 0, length);
+
+            Result[]? results = reader.DecodeBuffer(bytes, mat.Cols, mat.Rows, (int)mat.Step(), BarcodeQRCodeReader.ImagePixelFormat.IPF_RGB_888);
             if (results != null)
             {
                 foreach (Result result in results)
@@ -101,7 +106,11 @@ namespace Test
                     break;
             }
 
-            Result[]? results = reader.DecodeBuffer(bmpData.Scan0, bitmap.Width, bitmap.Height, bmpData.Stride, format);
+            int length = bitmap.Height * bmpData.Stride;
+            byte[] bytes = new byte[length];
+            Marshal.Copy(bmpData.Scan0, bytes, 0, length);
+
+            Result[]? results = reader.DecodeBuffer(bytes, bitmap.Width, bitmap.Height, bmpData.Stride, format);
             //Unlock the pixels
             bitmap.UnlockBits(bmpData);
 

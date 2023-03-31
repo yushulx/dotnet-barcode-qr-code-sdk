@@ -483,11 +483,17 @@ public class BarcodeQRCodeReader
         return OutputResults();
     }
 
-    public Result[]? DecodeBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)
+    public Result[]? DecodeBuffer(byte[] buffer, int width, int height, int stride, ImagePixelFormat format)
     {
         if (hBarcode == IntPtr.Zero) return null;
 
+        int length = buffer.Length;
+        IntPtr pBufferBytes = Marshal.AllocHGlobal(length);
+        Marshal.Copy(buffer, 0, pBufferBytes, length);
+
         int ret = DBR_DecodeBuffer(hBarcode, pBufferBytes, width, height, stride, format, "");
+
+        Marshal.FreeHGlobal(pBufferBytes);
         return OutputResults();
     }
 

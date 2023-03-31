@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>BarcodeQRCodeSDK</PackageId>
-    <Version>2.2.1</Version>
+    <Version>2.3.0</Version>
     <Authors>yushulx</Authors>
     <Company>Dynamsoft</Company>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/yushulx/dotnet-barcode-qr-code-sdk</RepositoryUrl>
     <PackageTags>barcode;qrcode;Aztec;QR;Datamatrix;PDF417;Code39;Code93;Code128;Codabar;Interleaved;EAN-8;EAN-13;UPC-A;UPC-E;GS1Databar;PatchCode;Maxicode;COMPOSITE;PostalCode</PackageTags>
     <PackageReleaseNotes>
-    	- Updated Dynamsoft Barcode Reader to v9.2.
+    	- Updated DecodeBuffer() to support decoding from a byte array
     </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

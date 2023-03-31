@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- <ProjectReference Include="..\..\BarcodeQRCodeSDK.csproj" /> -->
-    <PackageReference Include="BarcodeQRCodeSDK" Version="2.1.0" />
+    <ProjectReference Include="..\..\BarcodeQRCodeSDK.csproj" />
+    <!-- <PackageReference Include="BarcodeQRCodeSDK" Version="2.1.0" /> -->
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
   </ItemGroup>
 

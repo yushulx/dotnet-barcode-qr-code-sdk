@@ -227,7 +227,7 @@ namespace Test
 - `public static void InitLicense(string license)`
 - `public static BarcodeQRCodeReader Create()`
 - `public Result[]? DecodeFile(string filename)`
-- `public Result[]? DecodeBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)`
+- `public Result[]? DecodeBuffer(byte[] buffer, int width, int height, int stride, ImagePixelFormat format)`
 - `public Result[]? DecodeBase64(string base64string)`
 - `public static string? GetVersionInfo()`
 - `public void SetParameters(string parameters)`
@@ -281,7 +281,11 @@ namespace Test
             break;
     }
 
-    Result[]? results = reader.DecodeBuffer(bmpData.Scan0, bitmap.Width, bitmap.Height, bmpData.Stride, format);
+    int length = bitmap.Height * bmpData.Stride;
+    byte[] bytes = new byte[length];
+    Marshal.Copy(bmpData.Scan0, bytes, 0, length);
+
+    Result[]? results = reader.DecodeBuffer(bytes, bitmap.Width, bitmap.Height, bmpData.Stride, format);
     bitmap.UnlockBits(bmpData);
     ```
 - Get SDK version number:
