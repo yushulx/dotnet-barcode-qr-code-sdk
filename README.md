@@ -332,7 +332,7 @@ namespace Test
 
 ```bash
 dotnet build --configuration Release
-nuget pack BarcodeQRCodeReader.nuspec
+nuget pack .\BarcodeQRCodeSDK.nuspec
 ```
 
 ## Supported Barcode Symbologies
