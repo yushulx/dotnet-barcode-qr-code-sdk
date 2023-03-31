@@ -21,15 +21,16 @@
   <files>
     <file src="README.md" target="docs\" />
     <file src="LICENSE.txt" target=""/>
-    <file src="platform\win\**\*.*" target="runtimes\win-x64\native" />
 
-    <file src="platform\macos\**\*.*" target="runtimes\osx-x64\native" />
-
-    <file src="platform\linux\**\*.*" target="runtimes\linux-x64\native" />
-  
-    <file src="bin\Release\net6.0\BarcodeQRCodeSDK.dll" target="lib\net6.0" />
-  
-    <file src="include\**\*.*"   target="build\native\include" />
+    <!-- Desktop -->
+    <file src="desktop\platform\win\**\*.*" target="runtimes\win-x64\native" />
+    <file src="desktop\platform\macos\**\*.*" target="runtimes\osx-x64\native" />
+    <file src="desktop\platform\linux\**\*.*" target="runtimes\linux-x64\native" />
+    <file src="desktop\bin\Release\net6.0\BarcodeQRCodeSDK.dll" target="lib\net6.0" />
+    <file src="desktop\include\**\*.*"   target="build\native\include" />
     <file src="BarcodeQRCodeSDK.targets"   target="build\native" />
+
+    <!-- Android -->
+    <file src="android\bin\Release\net6.0-android\**\*.*" target="lib\net6.0-android31.0" />
   </files>
 </package>
