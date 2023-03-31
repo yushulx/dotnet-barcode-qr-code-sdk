@@ -4,6 +4,7 @@
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>BarcodeQRCodeSDK</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="DynamsoftBarcodeReader.aar" />
