@@ -3,11 +3,17 @@
 
 The Barcode and QR Code Reader SDK is a wrapper for [Dynamsoft Barcode Reader SDK](https://www.dynamsoft.com/barcode-reader/overview/), supporting .NET and C++ application development for 1D and 2D barcode recognition.
 
+## SDK Version for Different Platforms
+| Dynamsoft Barcode Reader      | Android |    iOS | Windows | Linux | macOS |
+| ----------- | ----------- | ----------- | ----------- |----------- |----------- |----------- |
+| Version    | 9.6.20       | 9.6.20   | 9.6.20      | 9.6.20    |9.6.20      |
+
 ## Supported Platforms
 - Windows (x64)
 - Linux (x64)
 - macOS (x64)
 - Android
+- iOS
 
 ## License Activation
 Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr) to get a valid license key.
