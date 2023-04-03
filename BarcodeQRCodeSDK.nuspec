@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>BarcodeQRCodeSDK</id>
-    <version>2.3.1</version>
+    <version>2.3.2</version>
     <title>Barcode and QR Code Reader SDK</title>
     <authors>yushulx</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -13,7 +13,7 @@
     <description>The Barcode and QR Code Reader SDK is a wrapper for Dynamsoft C++ Barcode Reader SDK, supporting x64 Windows, x64 Linux and x64 macOS</description>
     <releaseNotes>Support Android and iOS</releaseNotes>
     <copyright>$copyright$</copyright>
-    <tags>Native native barcode qrcode Aztec QR Datamatrix PDF417 Code39 Code93 Code128 Codabar Interleaved EAN-8 EAN-13 UPC-A UPC-E GS1Databar PatchCode Maxicode COMPOSITE PostalCode</tags>
+    <tags>Native native Android barcode qrcode Aztec QR Datamatrix PDF417 Code39 Code93 Code128 Codabar Interleaved EAN-8 EAN-13 UPC-A UPC-E GS1Databar PatchCode Maxicode COMPOSITE PostalCode</tags>
     <dependencies>
       <!-- <dependency id="Newtonsoft.Json" version="9.0" /> -->
     </dependencies>

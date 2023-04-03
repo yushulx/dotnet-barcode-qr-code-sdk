@@ -7,9 +7,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <!-- <PackageReference Include="BarcodeQRCodeSDK" Version="2.1.0" /> -->
+    <!-- <PackageReference Include="BarcodeQRCodeSDK" Version="2.3.2" /> -->
     <PackageReference Include="OpenCvSharp4" Version="4.6.0.20220608" />
-    <ProjectReference Include="..\..\BarcodeQRCodeSDK.csproj" />
+    <ProjectReference Include="..\..\desktop\BarcodeQRCodeSDK.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="OpenCvSharp4.Extensions" Version="4.5.5.20211231" />

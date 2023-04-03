@@ -1,12 +1,13 @@
 # Barcode and QR Code Reader SDK
 ![Barcode and QR Code SDK](https://img.shields.io/nuget/v/BarcodeQRCodeSDK)
 
-The Barcode and QR Code Reader SDK is a wrapper for [Dynamsoft C++ Barcode Reader SDK](https://www.dynamsoft.com/barcode-reader/sdk-desktop-server/), supporting .NET and C++ application development for 1D and 2D barcode recognition.
+The Barcode and QR Code Reader SDK is a wrapper for [Dynamsoft Barcode Reader SDK](https://www.dynamsoft.com/barcode-reader/overview/), supporting .NET and C++ application development for 1D and 2D barcode recognition.
 
 ## Supported Platforms
 - Windows (x64)
 - Linux (x64)
 - macOS (x64)
+- Android
 
 ## License Activation
 Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr) to get a valid license key.
@@ -180,7 +181,6 @@ Please refer to [C++ Development](https://www.dynamsoft.com/barcode-reader/docs/
 
 ```csharp
 using System;
-using System.Runtime.InteropServices;
 using Dynamsoft;
 
 namespace Test
@@ -327,7 +327,10 @@ namespace Test
     ```
     
     ![ASP.NET online barcode and QR code reader](https://camo.githubusercontent.com/cf68ff6cadf563cb52b6d759d262ea44c5922d1bdc7c039027a70386e8763f10/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30342f6173702d6e65742d626172636f64652d71722d636f64652d7363616e2e706e67)
-    
+- [Android](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/android)
+
+    ![MAUI Android barcode reader](https://www.dynamsoft.com/codepool/img/2023/04/maui-barcode-reader.jpg)
+
 ## Building NuGet Package from Source Code
 
 ```bash
