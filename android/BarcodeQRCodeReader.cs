@@ -115,12 +115,18 @@ namespace Dynamsoft
                 for (int i = 0; i < results.Length; ++i)
                 {
                     TextResult tmp = results[i];
-                    Result r = output[i];
+                    Result r = new Result();
+                    output[i] = r;
                     r.Text = tmp.BarcodeText;
                     r.Format1 = tmp.BarcodeFormatString;
-                    r.Format2 = tmp.BarcodeFormatString2;
-                    IList<Point> points = tmp.LocalizationResult.ResultPoints;
-                    r.Points = new int[8] { points[0].X, points[0].Y, points[1].X, points[1].Y, points[2].X, points[2].Y, points[3].X, points[3].Y };
+                    r.Format2 = tmp.BarcodeFormatString;
+                    if (tmp.LocalizationResult != null && tmp.LocalizationResult.ResultPoints != null)
+                    {
+                        IList<Point> points = tmp.LocalizationResult.ResultPoints;
+                        r.Points = new int[8] { points[0].X, points[0].Y, points[1].X, points[1].Y, points[2].X, points[2].Y, points[3].X, points[3].Y };
+                    }
+                    else 
+                        r.Points = null;
                 }
             }
 
