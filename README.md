@@ -5,7 +5,7 @@ The Barcode and QR Code Reader SDK is a wrapper for [Dynamsoft Barcode Reader SD
 
 ## SDK Version for Different Platforms
 | Dynamsoft Barcode Reader      | Android |    iOS | Windows | Linux | macOS |
-| ----------- | ----------- | ----------- | ----------- |----------- |----------- |----------- |
+| ----------- | ----------- | ----------- | ----------- |----------- |----------- |
 | Version    | 9.6.20       | 9.6.20   | 9.6.20      | 9.6.20    |9.6.20      |
 
 ## Supported Platforms
