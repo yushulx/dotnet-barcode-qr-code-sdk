@@ -10,8 +10,8 @@
     <readme>docs\README.md</readme>
     <!-- <icon>icon.png</icon> -->
     <projectUrl>https://github.com/yushulx/dotnet-barcode-qr-code-sdk</projectUrl>
-    <description>The Barcode and QR Code Reader SDK is a wrapper for Dynamsoft C++ Barcode Reader SDK, supporting x64 Windows, x64 Linux and x64 macOS</description>
-    <releaseNotes>Support Android and iOS</releaseNotes>
+    <description>The Barcode and QR Code Reader SDK is a wrapper for Dynamsoft Barcode Reader SDK, supporting x64 Windows, x64 Linux, x64 macOS and Android</description>
+    <releaseNotes>Added support for Android</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>Native native Android barcode qrcode Aztec QR Datamatrix PDF417 Code39 Code93 Code128 Codabar Interleaved EAN-8 EAN-13 UPC-A UPC-E GS1Databar PatchCode Maxicode COMPOSITE PostalCode</tags>
     <dependencies>
