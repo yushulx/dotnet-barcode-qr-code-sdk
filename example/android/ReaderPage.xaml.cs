@@ -1,10 +1,10 @@
 namespace BarcodeQRCode;
 
-using BarcodeQRCode.Services;
+using Dynamsoft;
 
 public partial class ReaderPage : ContentPage
 {
-    BarcodeQRCodeService _barcodeQRCodeService;
+    BarcodeQRCodeReader reader;
 
     public ReaderPage()
     {
@@ -17,16 +17,17 @@ public partial class ReaderPage : ContentPage
     {
         await Task.Run(() =>
         {
-            _barcodeQRCodeService = new BarcodeQRCodeService();
-
+           
             try
             {
-                _barcodeQRCodeService.InitSDK("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==");
+                BarcodeQRCodeReader.InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==");
             }
             catch (Exception ex)
             {
                 DisplayAlert("Error", ex.Message, "OK");
             }
+
+            reader = BarcodeQRCodeReader.Create();
 
             return Task.CompletedTask;
         });
@@ -45,8 +46,33 @@ public partial class ReaderPage : ContentPage
 
             Image.Source = ImageSource.FromFile(file.FullPath);
 
-            var result = _barcodeQRCodeService.DecodeFile(file.FullPath);
-            ResultLabel.Text = result;
+            String decodingResult = "";
+            try
+            {
+
+                BarcodeQRCodeReader.Result[]? results = reader.DecodeFile(file.FullPath);
+                if (results != null && results.Length > 0)
+                {
+                    int i = 1;
+                    foreach (BarcodeQRCodeReader.Result result in results)
+                    {
+                        string barcodeFormat = result.Format1;
+                        string message = "Barcode " + i + ": " + barcodeFormat + ", " + result.Text;
+                        Console.WriteLine(message);
+                        decodingResult += message;
+                        i++;
+                    }
+                }
+                else
+                {
+                    decodingResult = "No barcode found.";
+                }
+            }
+            catch (Exception exception)
+            {
+                decodingResult = exception.Message.ToString();
+            }
+            ResultLabel.Text = decodingResult;
         }
         catch (Exception ex)
         {
