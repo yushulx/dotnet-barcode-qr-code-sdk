@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using com.Dynamsoft.Dbr;
+using System.Runtime.InteropServices;
+using Foundation;
 
 namespace Dynamsoft
 {
@@ -63,20 +65,20 @@ namespace Dynamsoft
             IPF_BGR_888
         }
 
-        //public class DBRLicenseVerificationListener : Java.Lang.Object, IDBRLicenseVerificationListener
-        //{
-        //    public void DBRLicenseVerificationCallback(bool isSuccess, Java.Lang.Exception error)
-        //    {
-        //        if (!isSuccess)
-        //        {
-        //            System.Console.WriteLine(error.Message);
-        //        }
-        //    }
-        //}
+        public class Listener : DBRLicenseVerificationListener
+        {
+            public void DBRLicenseVerificationCallback(bool isSuccess, NSError error)
+            {
+                if (error != null)
+                {
+                    System.Console.WriteLine(error.UserInfo);
+                }
+            }
+        }
 
         public static void InitLicense(string license)
         {
-            //BarcodeReader.InitLicense(license, new DBRLicenseVerificationListener());
+            DynamsoftBarcodeReader.InitLicense(license, new Listener());
         }
 
         private BarcodeQRCodeReader()
@@ -104,63 +106,73 @@ namespace Dynamsoft
             return DynamsoftBarcodeReader.Version;
         }
 
-        //private Result[]? OutputResults(TextResult[]? results)
-        //{
-        //    Result[]? output = null;
-        //    if (results != null && results.Length > 0)
-        //    {
-        //        output = new Result[results.Length];
-        //        for (int i = 0; i < results.Length; ++i)
-        //        {
-        //            TextResult tmp = results[i];
-        //            Result r = new Result();
-        //            output[i] = r;
-        //            r.Text = tmp.BarcodeText;
-        //            r.Format1 = tmp.BarcodeFormatString;
-        //            r.Format2 = tmp.BarcodeFormatString;
-        //            if (tmp.LocalizationResult != null && tmp.LocalizationResult.ResultPoints != null)
-        //            {
-        //                IList<Point> points = tmp.LocalizationResult.ResultPoints;
-        //                r.Points = new int[8] { points[0].X, points[0].Y, points[1].X, points[1].Y, points[2].X, points[2].Y, points[3].X, points[3].Y };
-        //            }
-        //            else
-        //                r.Points = null;
-        //        }
-        //    }
+        private Result[]? OutputResults(iTextResult[]? results)
+        {
+            Result[]? output = null;
+            if (results != null && results.Length > 0)
+            {
+                output = new Result[results.Length];
+                for (int i = 0; i < results.Length; ++i)
+                {
+                    iTextResult tmp = results[i];
+                    Result r = new Result();
+                    output[i] = r;
+                    r.Text = tmp.BarcodeText;
+                    r.Format1 = tmp.BarcodeFormatString;
+                    r.Format2 = tmp.BarcodeFormatString;
+                    if (tmp.LocalizationResult != null && tmp.LocalizationResult.ResultPoints != null)
+                    {
+                        NSObject[] points = tmp.LocalizationResult.ResultPoints;
+                        r.Points = new int[8] { (int)((NSValue)points[0]).CGPointValue.X, (int)((NSValue)points[0]).CGPointValue.Y, (int)((NSValue)points[1]).CGPointValue.X, (int)((NSValue)points[1]).CGPointValue.Y, (int)((NSValue)points[2]).CGPointValue.X, (int)((NSValue)points[2]).CGPointValue.Y, (int)((NSValue)points[3]).CGPointValue.X, (int)((NSValue)points[3]).CGPointValue.Y };
+                    }
+                    else
+                        r.Points = null;
+                }
+            }
 
-        //    return output;
-        //}
+            return output;
+        }
 
-        //public Result[]? DecodeFile(string filename)
-        //{
-        //    if (reader == null) { return null; }
+        public Result[]? DecodeFile(string filename)
+        {
+            if (reader == null) { return null; }
 
-        //    TextResult[]? results = reader.DecodeFile(filename);
-        //    return OutputResults(results);
-        //}
+            NSError error;
+            iTextResult[]? results = reader.DecodeFileWithName(filename, out error);
+            return OutputResults(results);
+        }
 
-        //public Result[]? DecodeBuffer(byte[] buffer, int width, int height, int stride, ImagePixelFormat format)
-        //{
-        //    if (reader == null) { return null; }
+        public Result[]? DecodeBuffer(byte[] myBytes, int width, int height, int stride, ImagePixelFormat format)
+        {
+            if (reader == null) { return null; }
 
-        //    TextResult[]? results = reader.DecodeBuffer(buffer, width, height, stride, (int)format);
+            NSError error;
+            IntPtr buffer = Marshal.AllocHGlobal(myBytes.Length);
+            Marshal.Copy(myBytes, 0, buffer, myBytes.Length);
+            NSData data = NSData.FromBytes(buffer, (nuint)myBytes.Length);
+            
+            iTextResult[]? results = reader.DecodeBuffer(data, width, height, stride, (EnumImagePixelFormat)format, out error);
+            Marshal.FreeHGlobal(buffer);
 
-        //    return OutputResults(results);
-        //}
+            return OutputResults(results);
+        }
 
-        //public Result[]? DecodeBase64(string base64string)
-        //{
-        //    if (reader == null) { return null; }
-        //    TextResult[]? results = reader.DecodeBase64String(base64string);
+        public Result[]? DecodeBase64(string base64string)
+        {
+            if (reader == null) { return null; }
 
-        //    return OutputResults(results);
-        //}
+            NSError error;
+            iTextResult[]? results = reader.DecodeBase64(base64string, out error);
 
-        //public void SetParameters(string parameters)
-        //{
-        //    if (reader == null) { return; }
+            return OutputResults(results);
+        }
 
-        //    reader.InitRuntimeSettingsWithString(parameters, EnumConflictMode.CmOverwrite);
-        //}
+        public void SetParameters(string parameters)
+        {
+            if (reader == null) { return; }
+
+            NSError error;
+            reader.InitRuntimeSettingsWithString(parameters, EnumConflictMode.Overwrite, out error);
+        }
     }
 }
