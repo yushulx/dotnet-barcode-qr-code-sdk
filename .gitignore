@@ -3,3 +3,5 @@ bin
 packages
 Debug
 .vs
+/*.nupkg
+/example/web/Upload

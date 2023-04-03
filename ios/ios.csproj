@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-ios</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <AssemblyName>BarcodeQRCodeSDK</AssemblyName>
+    <IsBindingProject>true</IsBindingProject>
+    <BaseOutputPath></BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <NativeReference Include="DynamsoftBarcodeReader.xcframework">
+      <Kind>Framework</Kind>
+      <Frameworks></Frameworks>
+    </NativeReference>
+  </ItemGroup>
+</Project>
