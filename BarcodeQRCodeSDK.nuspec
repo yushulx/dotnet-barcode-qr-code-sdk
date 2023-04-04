@@ -34,7 +34,7 @@
     <file src="android\bin\Release\net6.0-android\**\*.*" target="lib\net6.0-android31.0" />
 
     <!-- iOS -->
-    <file src="ios\bin\Release\net6.0-ios\ios.dll" target="lib\net6.0-ios15.4" />
-    <file src="ios\bin\Release\net6.0-ios\ios.resources\**\*.*" target="lib\net6.0-ios15.4\ios.resources" />
+    <file src="ios\bin\Release\net6.0-ios\BarcodeQRCodeSDK.dll" target="lib\net6.0-ios16.1" />
+    <file src="ios\bin\Release\net6.0-ios\BarcodeQRCodeSDK.resources\**\*.*" target="lib\net6.0-ios16.1\BarcodeQRCodeSDK.resources" />
   </files>
 </package>
