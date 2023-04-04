@@ -3,3 +3,5 @@ bin
 packages
 Debug
 .vs
+/example/web/Upload
+.DS_Store

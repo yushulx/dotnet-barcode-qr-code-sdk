@@ -3,11 +3,17 @@
 
 The Barcode and QR Code Reader SDK is a wrapper for [Dynamsoft Barcode Reader SDK](https://www.dynamsoft.com/barcode-reader/overview/), supporting .NET and C++ application development for 1D and 2D barcode recognition.
 
+## SDK Version for Different Platforms
+| Dynamsoft Barcode Reader      | Android |    iOS | Windows | Linux | macOS |
+| ----------- | ----------- | ----------- | ----------- |----------- |----------- |
+| Version    | 9.6.20       | 9.6.20   | 9.6.20      | 9.6.20    |9.6.20      |
+
 ## Supported Platforms
 - Windows (x64)
 - Linux (x64)
 - macOS (x64)
 - Android
+- iOS
 
 ## License Activation
 Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr) to get a valid license key.
@@ -327,7 +333,7 @@ namespace Test
     ```
     
     ![ASP.NET online barcode and QR code reader](https://camo.githubusercontent.com/cf68ff6cadf563cb52b6d759d262ea44c5922d1bdc7c039027a70386e8763f10/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30342f6173702d6e65742d626172636f64652d71722d636f64652d7363616e2e706e67)
-- [Android](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/android)
+- [Mobile](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/maui)
 
     ![MAUI Android barcode reader](https://camo.githubusercontent.com/f53ac3a94edcc3262608110117e110f0158ec38c7a1d8a5bedccc7d574ee8bcf/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032332f30342f6d6175692d626172636f64652d7265616465722e6a7067)
 
