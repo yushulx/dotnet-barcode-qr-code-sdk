@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace BarcodeQRCode;
+namespace BarcodeQrScanner;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

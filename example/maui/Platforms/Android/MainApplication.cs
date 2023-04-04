@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace BarcodeQRCode;
+namespace BarcodeQrScanner;
 
 [Application]
 public class MainApplication : MauiApplication

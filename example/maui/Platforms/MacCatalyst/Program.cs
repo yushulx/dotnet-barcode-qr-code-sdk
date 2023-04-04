@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace BarcodeQRCode;
+namespace BarcodeQrScanner;
 
 public class Program
 {

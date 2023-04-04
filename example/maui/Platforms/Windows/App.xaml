@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="BarcodeQRCode.WinUI.App"
+    x:Class="BarcodeQrScanner.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:BarcodeQRCode.WinUI">
+    xmlns:local="using:BarcodeQrScanner.WinUI">
 
 </maui:MauiWinUIApplication>
