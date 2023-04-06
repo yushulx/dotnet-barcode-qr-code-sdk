@@ -4,7 +4,7 @@ The .NET MAUI project is ported from [Xamarin.Forms barcode QR code scanner](htt
 
 ## Usage
 1. Import the project to `Visual Studio 2022`.
-2. Apply for a [30-day free trial license](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr) and update the following code in [MainPage.xaml.cs](https://github.com/yushulx/xamarin-forms-barcode-qrcode-scanner/blob/main/CustomRenderer/MainPage.xaml.cs).
+2. Apply for a [30-day free trial license](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr) and update the following code in `MainPage.xaml.cs`.
 
     ```csharp
     BarcodeQRCodeReader.InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==");
