@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls.Compatibility.Hosting;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using Microsoft.AspNetCore.Components.WebView.Maui;
 
 namespace BarcodeQrScanner;
 
@@ -28,6 +29,10 @@ public static class MauiProgram
 #endif
 			});
 
+		builder.Services.AddMauiBlazorWebView();
+#if DEBUG
+		builder.Services.AddBlazorWebViewDeveloperTools();
+#endif
 
 		return builder.Build();
 	}

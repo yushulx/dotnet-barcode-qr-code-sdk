@@ -78,7 +78,7 @@ public partial class MainPage : ContentPage
     {
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI || DeviceInfo.Current.Platform == DevicePlatform.MacCatalyst)
         {
-            await Navigation.PushAsync(new DesktopCameraPage());
+            await Navigation.PushAsync(new WebContentPage());
             return;
         }
 

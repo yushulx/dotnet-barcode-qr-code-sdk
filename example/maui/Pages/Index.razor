@@ -1,0 +1,40 @@
+﻿@page "/"
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.Web;
+
+@if (initialized == false)
+{
+    <p>Initializing Dynamsoft Barcode Reader SDK...</p>
+}
+else {
+    <div class="container">
+        <button class="btn" @onclick="StartReader">Barcode Reader</button>
+        <button class="btn" @onclick="StartScanner">Barcode Scanner</button>
+    </div>
+}
+
+@code {
+    Boolean initialized = false;
+
+    protected override void OnInitialized()
+    {
+        Init();
+    }
+
+    public async void Init()
+    {
+        initialized = await JSRuntime.InvokeAsync<Boolean>("jsFunctions.initSDK");
+        StateHasChanged();
+    }
+
+    public void StartReader()
+    {
+        NavigationManager.NavigateTo("barcodereader");
+    }
+
+    public void StartScanner()
+    {
+        NavigationManager.NavigateTo("barcodescanner");
+    }
+}
