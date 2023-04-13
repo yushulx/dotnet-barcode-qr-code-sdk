@@ -15,6 +15,12 @@ public partial class MainPage : ContentPage
 
     async void OnTakePhotoButtonClicked(object sender, EventArgs e)
     {
+        if (DeviceInfo.Current.Platform == DevicePlatform.MacCatalyst)
+        {
+            await Navigation.PushAsync(new WebContentPage());
+            return;
+        }
+
         try
         {
 
@@ -78,7 +84,7 @@ public partial class MainPage : ContentPage
     {
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI || DeviceInfo.Current.Platform == DevicePlatform.MacCatalyst)
         {
-            await Navigation.PushAsync(new DesktopCameraPage());
+            await Navigation.PushAsync(new WebContentPage());
             return;
         }
 
