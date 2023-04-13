@@ -15,6 +15,12 @@ public partial class MainPage : ContentPage
 
     async void OnTakePhotoButtonClicked(object sender, EventArgs e)
     {
+        if (DeviceInfo.Current.Platform == DevicePlatform.MacCatalyst)
+        {
+            await Navigation.PushAsync(new WebContentPage());
+            return;
+        }
+
         try
         {
 
