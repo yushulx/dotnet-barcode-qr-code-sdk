@@ -26,8 +26,8 @@ The .NET MAUI project is ported from [Xamarin.Forms barcode QR code scanner](htt
     
     https://user-images.githubusercontent.com/2202306/231950419-f42c6bb5-c51a-4f5f-9443-372940e4f6da.mp4
 
-## Known Issue
+## Known Issues
+- Due to the absence of native runtime libraries that support MacCatalyst, the .NET MAUI MacCatalyst app is currently limited to using web APIs for barcode scanning from image files.
+- The live camera scanning cannot work on macOS, because `WKWebView` only supports `getUserMedia()` on **iPhone** and **iPad**.
 
-The live camera scanning cannot work on macOS, because `WKWebView` only supports `getUserMedia()` on **iPhone** and **iPad**.
-
-![.NET MAUI blazor barcode scanner software](https://www.dynamsoft.com/codepool/img/2023/04/maui-macos-webview-camera-error.png)
+    ![.NET MAUI blazor barcode scanner software](https://www.dynamsoft.com/codepool/img/2023/04/maui-macos-webview-camera-error.png)
