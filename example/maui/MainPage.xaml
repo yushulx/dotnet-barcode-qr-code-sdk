@@ -5,8 +5,8 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Button x:Name="takePhotoButton" Text="Take Photo" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnTakePhotoButtonClicked" />
-            <Button x:Name="takeVideoButton" Text="Take Video" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnTakeVideoButtonClicked" />
+            <Button x:Name="takePhotoButton" Text="Image File" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnTakePhotoButtonClicked" />
+            <Button x:Name="takeVideoButton" Text="Camera Stream" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnTakeVideoButtonClicked" />
         </StackLayout>
     </ContentPage.Content>
 
