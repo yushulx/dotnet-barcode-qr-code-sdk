@@ -1,6 +1,5 @@
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
-using System.Timers;
 using OpenCvSharp;
 using System.Runtime.InteropServices;
 using Dynamsoft;
@@ -18,7 +17,9 @@ public partial class DesktopCameraPage : ContentPage
     private ConcurrentQueue<BarcodeQRCodeReader.Result[]> _queue = new ConcurrentQueue<BarcodeQRCodeReader.Result[]>();
     private ConcurrentQueue<SKBitmap> _bitmapQueue = new ConcurrentQueue<SKBitmap>();
     private SKBitmap _bitmap;
-    
+
+    private static object lockObject = new object();
+
     public DesktopCameraPage()
 	{
 		InitializeComponent();
@@ -30,14 +31,7 @@ public partial class DesktopCameraPage : ContentPage
 
     private void OnAppearing(object sender, EventArgs e)
     {
-        capture = new VideoCapture(0);
-
-        if (capture.IsOpened())
-        {
-            isCapturing = true;
-            thread = new Thread(new ThreadStart(FrameCallback));
-            thread.Start();
-        }
+        Create();
     }
     
     private void OnDisappearing(object sender, EventArgs e)
@@ -108,30 +102,46 @@ public partial class DesktopCameraPage : ContentPage
         }
     }
 
+    private void Create()
+    {
+        lock (lockObject)
+        {
+            capture = new VideoCapture(0);
+
+            if (capture.IsOpened())
+            {
+                isCapturing = true;
+                thread = new Thread(new ThreadStart(FrameCallback));
+                thread.Start();
+            }
+        }
+    }
     private void Destroy()
     {
-        if (thread != null)
+        lock (lockObject)
         {
-            isCapturing = false;
-            
-            thread.Join();
-            thread = null;
-        }
+            if (thread != null)
+            {
+                isCapturing = false;
 
-        if (capture != null && capture.IsOpened())
-        {
-            capture.Release();
-            capture = null;
-        }
+                thread.Join();
+                thread = null;
+            }
 
-        ClearQueue();
+            if (capture != null && capture.IsOpened())
+            {
+                capture.Release();
+                capture = null;
+            }
 
-        if (_bitmap != null)
-        {
-            _bitmap.Dispose();
-            _bitmap = null;
+            ClearQueue();
+
+            if (_bitmap != null)
+            {
+                _bitmap.Dispose();
+                _bitmap = null;
+            }
         }
-        
     }
     
     ~DesktopCameraPage()
@@ -141,26 +151,34 @@ public partial class DesktopCameraPage : ContentPage
 
     void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
     {
-        if (!isCapturing) return;
-
-        SKSurface surface = args.Surface;
-        SKCanvas canvas = surface.Canvas;
-
-        canvas.Clear();
-
-        SKBitmap bitmap;
-        _bitmapQueue.TryDequeue(out bitmap);
-
-        if (bitmap != null)
+        lock (lockObject)
         {
-            _bitmap = bitmap;
-        }
+            if (!isCapturing) return;
 
-        if (_bitmap != null)
-        {
-            canvas.DrawBitmap(_bitmap, new SKPoint(0, 0));
-            _bitmap.Dispose();
+            SKSurface surface = args.Surface;
+            SKCanvas canvas = surface.Canvas;
+
+            canvas.Clear();
+
+            _bitmapQueue.TryDequeue(out _bitmap);
+
+            if (_bitmap != null)
+            {
+                try
+                {
+                    canvas.DrawBitmap(_bitmap, new SKPoint(0, 0));
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                finally
+                {
+                    _bitmap.Dispose();
+                    _bitmap = null;
+                }
+            }
         }
-        
+           
     }
 }
