@@ -23,8 +23,13 @@ public partial class DesktopCameraPage : ContentPage
 	{
 		InitializeComponent();
         this.Disappearing += OnDisappearing;
+        this.Appearing += OnAppearing;
         
         reader = BarcodeQRCodeReader.Create();
+    }
+
+    private void OnAppearing(object sender, EventArgs e)
+    {
         capture = new VideoCapture(0);
 
         if (capture.IsOpened())
@@ -33,9 +38,8 @@ public partial class DesktopCameraPage : ContentPage
             thread = new Thread(new ThreadStart(FrameCallback));
             thread.Start();
         }
-
     }
-
+    
     private void OnDisappearing(object sender, EventArgs e)
     {
         Destroy();
@@ -82,7 +86,7 @@ public partial class DesktopCameraPage : ContentPage
         Cv2.CvtColor(mat, newFrame, ColorConversionCodes.BGR2RGBA);
         SKBitmap bitmap = new SKBitmap(mat.Cols, mat.Rows, SKColorType.Rgba8888, SKAlphaType.Premul);
         bitmap.SetPixels(newFrame.Data);
-        if (_bitmapQueue.Count == 2) _bitmapQueue.Clear();
+        if (_bitmapQueue.Count == 2) ClearQueue();
         _bitmapQueue.Enqueue(bitmap);
         canvasView.InvalidateSurface();
     }
@@ -92,6 +96,15 @@ public partial class DesktopCameraPage : ContentPage
         while (isCapturing)
         {
             Decode();
+        }
+    }
+
+    private void ClearQueue()
+    {
+        while (_bitmapQueue.Count > 0) {
+            SKBitmap bitmap;
+            _bitmapQueue.TryDequeue(out bitmap);
+            bitmap.Dispose();
         }
     }
 
@@ -110,6 +123,15 @@ public partial class DesktopCameraPage : ContentPage
             capture.Release();
             capture = null;
         }
+
+        ClearQueue();
+
+        if (_bitmap != null)
+        {
+            _bitmap.Dispose();
+            _bitmap = null;
+        }
+        
     }
     
     ~DesktopCameraPage()
@@ -119,15 +141,25 @@ public partial class DesktopCameraPage : ContentPage
 
     void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
     {
+        if (!isCapturing) return;
+
         SKSurface surface = args.Surface;
         SKCanvas canvas = surface.Canvas;
 
         canvas.Clear();
 
-        _bitmapQueue.TryDequeue(out _bitmap);
+        SKBitmap bitmap;
+        _bitmapQueue.TryDequeue(out bitmap);
+
+        if (bitmap != null)
+        {
+            _bitmap = bitmap;
+        }
+
         if (_bitmap != null)
         {
             canvas.DrawBitmap(_bitmap, new SKPoint(0, 0));
+            _bitmap.Dispose();
         }
         
     }
