@@ -207,6 +207,11 @@ window.jsFunctions = {
         }
         return true;
     },
+    destroy: async function () {
+        if (scanner) {
+            await scanner.close();
+        }
+    },
     selectFile: async function (dotnetRef, overlayId, imageId) {
         initOverlay(document.getElementById(overlayId));
         if (reader) {

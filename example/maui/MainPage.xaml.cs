@@ -82,28 +82,41 @@ public partial class MainPage : ContentPage
 
     async void OnTakeVideoButtonClicked(object sender, EventArgs e)
     {
-        if (DeviceInfo.Current.Platform == DevicePlatform.WinUI || DeviceInfo.Current.Platform == DevicePlatform.MacCatalyst)
-        {
-            await Navigation.PushAsync(new WebContentPage());
-            return;
-        }
-
-            var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+        var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
         if (status == PermissionStatus.Granted)
         {
-            await Navigation.PushAsync(new CameraPage());
+            ToCameraPage();
         }
         else
         {
             status = await Permissions.RequestAsync<Permissions.Camera>();
             if (status == PermissionStatus.Granted)
             {
-                await Navigation.PushAsync(new CameraPage());
+                ToCameraPage();
             }
             else
             {
                 await DisplayAlert("Permission needed", "I will need Camera permission for this action", "Ok");
             }
+        }
+    }
+
+    async void ToCameraPage()
+    {
+        if (DeviceInfo.Current.Platform == DevicePlatform.MacCatalyst)
+        {
+            await Navigation.PushAsync(new WebContentPage());
+            return;
+        }
+        else if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+        {
+            await Navigation.PushAsync(new DesktopCameraPage());
+            //await Navigation.PushAsync(new WebContentPage());
+            return;
+        }
+        else
+        {
+            await Navigation.PushAsync(new CameraPage());
         }
     }
 }

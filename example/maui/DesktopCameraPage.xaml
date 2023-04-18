@@ -9,13 +9,6 @@
                            Margin="0"
                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                            PaintSurface="OnCanvasViewPaintSurface" />
-        <Label FontSize="18"
-                FontAttributes="Bold"
-               TextColor="Blue"
-                x:Name="ResultLabel"
-                   Text="Scanning..."
-                HorizontalOptions="Center"
-               VerticalOptions="Center" />
 
     </Grid>
 </ContentPage>

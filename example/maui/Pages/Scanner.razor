@@ -1,6 +1,7 @@
 @page "/barcodescanner"
 
 @inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
 
 @if (isGranted == false)
 {
@@ -24,22 +25,20 @@ else {
     String result = "";
     private DotNetObjectReference<Scanner> objRef;
 
-    @* https://docs.microsoft.com/en-us/aspnet/core/blazor/images?view=aspnetcore-6.0 *@
-    private async Task LoadImage(InputFileChangeEventArgs e)
-    {
-        result = "";
-
-        var imageFile = e.File;
-        var jsImageStream = imageFile.OpenReadStream(1024 * 1024 * 20);
-        var dotnetImageStream = new DotNetStreamReference(jsImageStream);
-        await JSRuntime.InvokeAsync<byte[]>("jsFunctions.setImageUsingStreaming",
-        "image", dotnetImageStream);
-    }
-
     protected override void OnInitialized()
     {
-        //objRef = DotNetObjectReference.Create(this);
-
+        NavigationManager.LocationChanged += HandleLocationChanged;
+    }
+    
+    private void HandleLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        if (!e.Location.Contains("barcodescanner"))
+        {
+            Task.Run(async () =>
+            {
+                await JSRuntime.InvokeAsync<Boolean>("jsFunctions.destroy");
+            });
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
