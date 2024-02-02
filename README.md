@@ -314,7 +314,7 @@ namespace Test
     dotnet run
     ```
     
-    ![.NET 6 command-line barcode and QR code reader](https://www.dynamsoft.com/codepool/img/2022/03/command-line-dotnet-barcode-qr-code-reader.png)
+    ![.NET 6 command-line barcode and QR code reader](https://camo.githubusercontent.com/f9bb76dc0439f780e01dbdae1d5d26e5cca93cac9ddb38a7e0dceca93853e9df/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30332f636f6d6d616e642d6c696e652d646f746e65742d626172636f64652d71722d636f64652d7265616465722e706e67)
 
 - [desktop-gui](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/desktop-gui) (**Windows Only**)
     
@@ -323,7 +323,7 @@ namespace Test
     dotnet run
     ```
     
-    ![.NET 6 Desktop barcode and QR code reader](https://www.dynamsoft.com/codepool/img/2022/03/desktop-dotnet-barcode-qr-code-reader.png) 
+    ![.NET 6 Desktop barcode and QR code reader](https://camo.githubusercontent.com/290d8a459b7f63d8020e4069e278089cb0dcd98475fd5e9b6b13aed735ebcb9a/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30332f6465736b746f702d646f746e65742d626172636f64652d71722d636f64652d7265616465722e706e67) 
 
 - [web](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/web)
   
@@ -332,11 +332,11 @@ namespace Test
     dotnet run
     ```
     
-    ![ASP.NET online barcode and QR code reader](https://www.dynamsoft.com/codepool/img/2022/04/asp-net-mobile-barcode-qr-code-reader.png)
+    ![ASP.NET online barcode and QR code reader](https://camo.githubusercontent.com/f29ef9d397bc0ca137c6836ce03d026dd8f52b45cdd8f6503e5b14b955ea08ba/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30342f6173702d6e65742d6d6f62696c652d626172636f64652d71722d636f64652d7265616465722e706e67)
 
 - [Mobile](https://github.com/yushulx/dotnet-barcode-qr-code-sdk/tree/main/example/maui)
 
-    ![MAUI Android barcode reader](https://www.dynamsoft.com/codepool/img/2024/01/dotnet-maui-android-ios-barcode-scanner.png)
+    ![MAUI Android barcode reader](https://camo.githubusercontent.com/375580b1a4b16e4d4fe013378d42d6a3020e33efe86cc0442b9142c585b39beb/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032342f30312f646f746e65742d6d6175692d616e64726f69642d696f732d626172636f64652d7363616e6e65722e706e67)
 
 ## Building NuGet Package from Source Code
 
