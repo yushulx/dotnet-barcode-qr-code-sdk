@@ -19,12 +19,13 @@ The .NET MAUI project is ported from [Xamarin.Forms barcode QR code scanner](htt
 3. Build and run the project. 
     
     **Mobile**
-    
-    https://user-images.githubusercontent.com/2202306/178880069-4a50cd11-77e9-45b5-8c3a-bd9b63ff85fa.mp4
+
+    https://user-images.githubusercontent.com/2202306/238875171-0a4b6f5d-f477-4661-a2aa-06cb929e20fe.mp4
     
     **Desktop**
-    
-    https://user-images.githubusercontent.com/2202306/231950419-f42c6bb5-c51a-4f5f-9443-372940e4f6da.mp4
+
+    https://github.com/yushulx/dotnet-barcode-qr-code-sdk/assets/2202306/ae54ad03-7387-4e87-97cf-7a648e7f7bf7
+
 
 ## Known Issues
 - Due to the absence of native runtime libraries that support MacCatalyst, the .NET MAUI MacCatalyst app is currently limited to using web APIs for barcode scanning from image files.

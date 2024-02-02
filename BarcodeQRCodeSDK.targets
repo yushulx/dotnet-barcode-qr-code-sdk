@@ -58,7 +58,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)\..\..\runtimes\win-x64\native\*.dylib"
+    <Content Include="$(MSBuildThisFileDirectory)\..\..\runtimes\osx-x64\native\*.dylib"
       Condition="'$(MyPlatform)' == 'x64' and '$(IsMacOS)'=='true'">
       <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
