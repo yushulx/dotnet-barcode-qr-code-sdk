@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>BarcodeQRCodeSDK</id>
-    <version>2.3.6</version>
+    <version>2.3.7</version>
     <title>Barcode and QR Code Reader SDK</title>
     <authors>yushulx</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -37,15 +37,8 @@
     <file src="android\bin\Release\net6.0-android\**\*.*" target="lib\net6.0-android31.0" />
 
     <!-- iOS -->
-    <file src="ios/manifest" target="lib/net6.0-ios16.1/BarcodeQRCodeSDK.resources" />
     <file src="ios\bin\Release\net6.0-ios\BarcodeQRCodeSDK.dll" target="lib\net6.0-ios16.1" />
-    <file src="ios\bin\Release\net6.0-ios\BarcodeQRCodeSDK.resources\**\*.*"
+    <file src="ios\bin\Release\net6.0-ios\BarcodeQRCodeSDK.resources\"
       target="lib\net6.0-ios16.1\BarcodeQRCodeSDK.resources" />
-    <file
-      src="ios/bin/Release/net6.0-ios/BarcodeQRCodeSDK.resources/DynamsoftBarcodeReader.xcframework/ios-arm64/DynamsoftBarcodeReader.framework/DynamsoftBarcodeReader"
-      target="lib/net6.0-ios16.1/BarcodeQRCodeSDK.resources/DynamsoftBarcodeReader.xcframework/ios-arm64/DynamsoftBarcodeReader.framework" />
-    <file
-      src="ios/bin/Release/net6.0-ios/BarcodeQRCodeSDK.resources/DynamsoftBarcodeReader.xcframework/ios-arm64_x86_64-simulator/DynamsoftBarcodeReader.framework/DynamsoftBarcodeReader"
-      target="lib/net6.0-ios16.1/BarcodeQRCodeSDK.resources/DynamsoftBarcodeReader.xcframework/ios-arm64_x86_64-simulator/DynamsoftBarcodeReader.framework" />
   </files>
 </package>
