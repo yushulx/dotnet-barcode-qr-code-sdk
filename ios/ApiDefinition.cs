@@ -75,31 +75,6 @@ namespace com.Dynamsoft.Dbr
 		NSObject[] AccompanyingTextRecognitionModes { get; set; }
 	}
 
-	// @interface iRegionDefinition : NSObject
-	[BaseType(typeof(NSObject))]
-	interface iRegionDefinition
-	{
-		// @property (assign, nonatomic) NSInteger regionTop;
-		[Export("regionTop")]
-		nint RegionTop { get; set; }
-
-		// @property (assign, nonatomic) NSInteger regionLeft;
-		[Export("regionLeft")]
-		nint RegionLeft { get; set; }
-
-		// @property (assign, nonatomic) NSInteger regionRight;
-		[Export("regionRight")]
-		nint RegionRight { get; set; }
-
-		// @property (assign, nonatomic) NSInteger regionBottom;
-		[Export("regionBottom")]
-		nint RegionBottom { get; set; }
-
-		// @property (assign, nonatomic) NSInteger regionMeasuredByPercentage;
-		[Export("regionMeasuredByPercentage")]
-		nint RegionMeasuredByPercentage { get; set; }
-	}
-
 	// @interface iPublicRuntimeSettings : NSObject
 	[BaseType(typeof(NSObject))]
 	interface iPublicRuntimeSettings
@@ -170,10 +145,6 @@ namespace com.Dynamsoft.Dbr
 		[NullAllowed, Export("textResultOrderModes", ArgumentSemantic.Assign)]
 
 		NSObject[] TextResultOrderModes { get; set; }
-
-		// @property (nonatomic) iRegionDefinition * _Nonnull region;
-		[Export("region", ArgumentSemantic.Assign)]
-		iRegionDefinition Region { get; set; }
 
 		// @property (assign, nonatomic) NSInteger minBarcodeTextLength;
 		[Export("minBarcodeTextLength")]
@@ -685,16 +656,6 @@ namespace com.Dynamsoft.Dbr
 		nint RpmColourArgumentIndex { get; set; }
 	}
 
-	// @interface iQuadrilateral : NSObject
-	[BaseType(typeof(NSObject))]
-	interface iQuadrilateral
-	{
-		// @property (nonatomic) NSArray * _Nonnull points;
-		[Export("points", ArgumentSemantic.Assign)]
-
-		NSObject[] Points { get; set; }
-	}
-
 	// @interface iContour : NSObject
 	[BaseType(typeof(NSObject))]
 	interface iContour
@@ -707,40 +668,6 @@ namespace com.Dynamsoft.Dbr
 		[Export("points", ArgumentSemantic.Assign)]
 
 		NSObject[] Points { get; set; }
-	}
-
-	// @interface iImageData : NSObject
-	[BaseType(typeof(NSObject))]
-	interface ImageData
-	{
-		// @property (nonatomic) NSData * _Nonnull bytes;
-		[Export("bytes", ArgumentSemantic.Assign)]
-		NSData Bytes { get; set; }
-
-		// @property (assign, nonatomic) NSInteger width;
-		[Export("width")]
-		nint Width { get; set; }
-
-		// @property (assign, nonatomic) NSInteger height;
-		[Export("height")]
-		nint Height { get; set; }
-
-		// @property (assign, nonatomic) NSInteger stride;
-		[Export("stride")]
-		nint Stride { get; set; }
-
-		// @property (assign, nonatomic) EnumImagePixelFormat format;
-		[Export("format", ArgumentSemantic.Assign)]
-		EnumImagePixelFormat Format { get; set; }
-
-		// @property (assign, nonatomic) NSInteger orientation;
-		[Export("orientation")]
-		nint Orientation { get; set; }
-
-		// -(UIImage * _Nullable)toUIImage:(NSError * _Nullable * _Nullable)error;
-		[Export("toUIImage:")]
-		[return: NullAllowed]
-		UIImage ToUIImage([NullAllowed] out NSError error);
 	}
 
 	// @interface iLineSegment : NSObject
@@ -792,26 +719,6 @@ namespace com.Dynamsoft.Dbr
 		void Results(nint frameId, [NullAllowed] iTextResult[] results, [NullAllowed] NSObject userData);
 	}
 
-	// @protocol DBRTextResultListener <NSObject>
-	/*
-	  Check whether adding [Model] to this declaration is appropriate.
-	  [Model] is used to generate a C# class that implements this protocol,
-	  and might be useful for protocols that consumers are supposed to implement,
-	  since consumers can subclass the generated class instead of implementing
-	  the generated interface. If consumers are not supposed to implement this
-	  protocol, then [Model] is redundant and will generate code that will never
-	  be used.
-	*/
-	[Protocol, Model]
-	[BaseType(typeof(NSObject))]
-	interface DBRTextResultListener
-	{
-		// @required -(void)textResultCallback:(NSInteger)frameId imageData:(iImageData * _Nonnull)imageData results:(NSArray<iTextResult *> * _Nullable)results;
-		[Abstract]
-		[Export("textResultCallback:imageData:results:")]
-		void TextResultCallback(nint frameId, ImageData imageData, [NullAllowed] iTextResult[] results);
-	}
-
 	// @protocol DBRIntermediateResultDelegate <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
@@ -821,26 +728,6 @@ namespace com.Dynamsoft.Dbr
 		[Abstract]
 		[Export("intermediateResultCallback:results:userData:")]
 		void IntermediateResultCallback(nint frameId, [NullAllowed] iIntermediateResult[] results, [NullAllowed] NSObject userData);
-	}
-
-	// @protocol DBRIntermediateResultListener <NSObject>
-	/*
-	  Check whether adding [Model] to this declaration is appropriate.
-	  [Model] is used to generate a C# class that implements this protocol,
-	  and might be useful for protocols that consumers are supposed to implement,
-	  since consumers can subclass the generated class instead of implementing
-	  the generated interface. If consumers are not supposed to implement this
-	  protocol, then [Model] is redundant and will generate code that will never
-	  be used.
-	*/
-	[Protocol, Model]
-	[BaseType(typeof(NSObject))]
-	interface DBRIntermediateResultListener
-	{
-		// @required -(void)intermediateResultCallback:(NSInteger)frameId imageData:(iImageData * _Nonnull)imageData results:(NSArray<iIntermediateResult *> * _Nullable)results;
-		[Abstract]
-		[Export("intermediateResultCallback:imageData:results:")]
-		void ImageData(nint frameId, ImageData imageData, [NullAllowed] iIntermediateResult[] results);
 	}
 
 	// @protocol DBRServerLicenseVerificationDelegate <NSObject>
@@ -929,26 +816,6 @@ namespace com.Dynamsoft.Dbr
 		// @property (assign, nonatomic) EnumProduct products;
 		[Export("products", ArgumentSemantic.Assign)]
 		EnumProduct Products { get; set; }
-	}
-
-	// @protocol ImageSource <NSObject>
-	/*
-	  Check whether adding [Model] to this declaration is appropriate.
-	  [Model] is used to generate a C# class that implements this protocol,
-	  and might be useful for protocols that consumers are supposed to implement,
-	  since consumers can subclass the generated class instead of implementing
-	  the generated interface. If consumers are not supposed to implement this
-	  protocol, then [Model] is redundant and will generate code that will never
-	  be used.
-	*/
-	[Protocol, Model]
-	[BaseType(typeof(NSObject))]
-	interface ImageSource
-	{
-		// @required -(iImageData * _Nullable)getImage;
-		[Abstract]
-		[NullAllowed, Export("getImage")]
-		ImageData Image { get; }
 	}
 
 	// @interface DynamsoftBarcodeReader : NSObject
@@ -1147,19 +1014,10 @@ namespace com.Dynamsoft.Dbr
 		[Export("duplicateForgetTime")]
 		nint DuplicateForgetTime { get; set; }
 
-		// -(void)setImageSource:(id<ImageSource> _Nonnull)source;
-		[Export("setImageSource:")]
-		void SetImageSource([NullAllowed] NSObject source);
-
 		// -(NSArray<iTextResult *> * _Nullable)decodeFileInMemory:(NSData * _Nonnull)buffer error:(NSError * _Nullable * _Nullable)error;
 		[Export("decodeFileInMemory:error:")]
 		[return: NullAllowed]
 		iTextResult[] DecodeFileInMemory(NSData buffer, [NullAllowed] out NSError error);
-
-		// -(NSArray<iTextResult *> * _Nullable)decodeBuffer:(iImageData * _Nonnull)imageData error:(NSError * _Nullable * _Nullable)error;
-		[Export("decodeBuffer:error:")]
-		[return: NullAllowed]
-		iTextResult[] DecodeBuffer(ImageData imageData, [NullAllowed] out NSError error);
 
 		// -(BOOL)setLogConfig:(NSString * _Nonnull)logDir mode:(NSInteger)mode error:(NSError * _Nullable * _Nullable)error;
 		[Export("setLogConfig:mode:error:")]
