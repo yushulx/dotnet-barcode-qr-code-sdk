@@ -72,7 +72,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BarcodeQRCodeSDK" Version="2.3.6" />
+		<PackageReference Include="BarcodeQRCodeSDK" Version="2.3.7" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.3" />
 	</ItemGroup>
 
