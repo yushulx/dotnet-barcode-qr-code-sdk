@@ -130,7 +130,7 @@ int main(int argc, const char* argv[])
 	printf("*************************************************\r\n");
 	printf("Hints: Please input 'Q' or 'q' to quit the application.\r\n");
 
-	iRet = CBarcodeReader::InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==", szErrorMsg, 256);
+	iRet = CBarcodeReader::InitLicense("LICENSE-KEY", szErrorMsg, 256);
 	if (iRet != DBR_OK)
 	{
 		printf("InitLicense Failed: %s\n", szErrorMsg);
@@ -195,7 +195,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            BarcodeQRCodeReader.InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ=="); // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
+            BarcodeQRCodeReader.InitLicense("LICENSE-KEY"); // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
             BarcodeQRCodeReader? reader = null;
             try {
                 reader = BarcodeQRCodeReader.Create();
@@ -242,7 +242,7 @@ namespace Test
 - Set the license key:
     
     ```csharp
-    BarcodeQRCodeReader.InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ=="); 
+    BarcodeQRCodeReader.InitLicense("LICENSE-KEY"); 
     ```
 - Initialize the barcode and QR code reader object:
     

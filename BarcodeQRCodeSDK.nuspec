@@ -12,7 +12,7 @@
     <projectUrl>https://github.com/yushulx/dotnet-barcode-qr-code-sdk</projectUrl>
     <description>The Barcode and QR Code Reader SDK is a wrapper for Dynamsoft Barcode Reader SDK,
       supporting x64 Windows, x64 Linux, x64 macOS, Android and iOS.</description>
-    <releaseNotes>Updated README</releaseNotes>
+    <releaseNotes>Updated .NET version to 7.0</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>Native native Android iOS barcode qrcode Aztec QR Datamatrix PDF417 Code39 Code93 Code128
       Codabar Interleaved EAN-8 EAN-13 UPC-A UPC-E GS1Databar PatchCode Maxicode COMPOSITE
@@ -29,16 +29,16 @@
     <file src="desktop\platform\win\**\*.*" target="runtimes\win-x64\native" />
     <file src="desktop\platform\macos\**\*.*" target="runtimes\osx-x64\native" />
     <file src="desktop\platform\linux\**\*.*" target="runtimes\linux-x64\native" />
-    <file src="desktop\bin\Release\net6.0\BarcodeQRCodeSDK.dll" target="lib\net6.0" />
+    <file src="desktop\bin\Release\net7.0\BarcodeQRCodeSDK.dll" target="lib\net7.0" />
     <file src="desktop\include\**\*.*" target="build\native\include" />
     <file src="BarcodeQRCodeSDK.targets" target="build\native" />
 
     <!-- Android -->
-    <file src="android\bin\Release\net6.0-android\**\*.*" target="lib\net6.0-android31.0" />
+    <file src="android\bin\Release\net7.0-android\**\*.*" target="lib\net7.0-android31.0" />
 
     <!-- iOS -->
-    <file src="ios\bin\Release\net6.0-ios\BarcodeQRCodeSDK.dll" target="lib\net6.0-ios16.1" />
-    <file src="ios\bin\Release\net6.0-ios\BarcodeQRCodeSDK.resources\"
-      target="lib\net6.0-ios16.1\BarcodeQRCodeSDK.resources" />
+    <file src="ios\bin\Release\net7.0-ios\BarcodeQRCodeSDK.dll" target="lib\net7.0-ios16.1" />
+    <file src="ios\bin\Release\net7.0-ios\BarcodeQRCodeSDK.resources\"
+      target="lib\net7.0-ios16.1\BarcodeQRCodeSDK.resources" />
   </files>
 </package>

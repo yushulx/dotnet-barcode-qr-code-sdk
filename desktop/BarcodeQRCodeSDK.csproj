@@ -5,17 +5,19 @@
     <Version>2.3.0</Version>
     <Authors>yushulx</Authors>
     <Company>Dynamsoft</Company>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild> -->
-    <Description>The Barcode and QR Code Reader SDK is a wrapper for Dynamsoft C++ Barcode Reader SDK, supporting x64 Windows, x64 Linux and x64 macOS</Description>
+    <Description>The Barcode and QR Code Reader SDK is a wrapper for Dynamsoft C++ Barcode Reader
+      SDK, supporting x64 Windows, x64 Linux and x64 macOS</Description>
     <PackageProjectUrl>https://github.com/yushulx/dotnet-barcode-qr-code-sdk</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/yushulx/dotnet-barcode-qr-code-sdk</RepositoryUrl>
-    <PackageTags>barcode;qrcode;Aztec;QR;Datamatrix;PDF417;Code39;Code93;Code128;Codabar;Interleaved;EAN-8;EAN-13;UPC-A;UPC-E;GS1Databar;PatchCode;Maxicode;COMPOSITE;PostalCode</PackageTags>
+    <PackageTags>
+      barcode;qrcode;Aztec;QR;Datamatrix;PDF417;Code39;Code93;Code128;Codabar;Interleaved;EAN-8;EAN-13;UPC-A;UPC-E;GS1Databar;PatchCode;Maxicode;COMPOSITE;PostalCode</PackageTags>
     <PackageReleaseNotes>
-    	- Updated DecodeBuffer() to support decoding from a byte array
+      - Updated DecodeBuffer() to support decoding from a byte array
     </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -24,23 +26,37 @@
   <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
     <DefineConstants>_WINDOWS</DefineConstants>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <Compile Remove="example\**" />
-    <None Include="LICENSE" Pack="true" PackagePath=""/>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    <None Include="LICENSE" Pack="true" PackagePath="" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/DynamsoftBarcodeReaderx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftBarcodeReaderx64.dll"  />
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/DynamsoftLicenseClientx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftLicenseClientx64.dll" />
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/win/vcomp110.dll" Pack="true" PackagePath="runtimes/win-x64/native/vcomp110.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
+      Include="platform/win/DynamsoftBarcodeReaderx64.dll" Pack="true"
+      PackagePath="runtimes/win-x64/native/DynamsoftBarcodeReaderx64.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
+      Include="platform/win/DynamsoftLicenseClientx64.dll" Pack="true"
+      PackagePath="runtimes/win-x64/native/DynamsoftLicenseClientx64.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
+      Include="platform/win/vcomp110.dll" Pack="true"
+      PackagePath="runtimes/win-x64/native/vcomp110.dll" />
 
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/macos/libDynamsoftBarcodeReader.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/libDynamsoftBarcodeReader.dylib" />
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/macos/libDynamsoftLicenseClient.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/libDynamsoftLicenseClient.dylib" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
+      Include="platform/macos/libDynamsoftBarcodeReader.dylib" Pack="true"
+      PackagePath="runtimes/osx-x64/native/libDynamsoftBarcodeReader.dylib" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
+      Include="platform/macos/libDynamsoftLicenseClient.dylib" Pack="true"
+      PackagePath="runtimes/osx-x64/native/libDynamsoftLicenseClient.dylib" />
 
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/linux/libDynamsoftBarcodeReader.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftBarcodeReader.so" />
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="platform/linux/libDynamsoftLicenseClient.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftLicenseClient.so" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
+      Include="platform/linux/libDynamsoftBarcodeReader.so" Pack="true"
+      PackagePath="runtimes/linux-x64/native/libDynamsoftBarcodeReader.so" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
+      Include="platform/linux/libDynamsoftLicenseClient.so" Pack="true"
+      PackagePath="runtimes/linux-x64/native/libDynamsoftLicenseClient.so" />
   </ItemGroup>
 
   <ItemGroup>

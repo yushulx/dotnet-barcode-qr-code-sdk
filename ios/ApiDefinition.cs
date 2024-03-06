@@ -12,37 +12,37 @@ namespace com.Dynamsoft.Dbr
 	{
 		// @property (readwrite, nonatomic) NSArray * _Nullable colourClusteringModes;
 		[NullAllowed, Export("colourClusteringModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] ColourClusteringModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable colourConversionModes;
 		[NullAllowed, Export("colourConversionModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] ColourConversionModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable grayscaleTransformationModes;
 		[NullAllowed, Export("grayscaleTransformationModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] GrayscaleTransformationModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable regionPredetectionModes;
 		[NullAllowed, Export("regionPredetectionModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] RegionPredetectionModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable imagePreprocessingModes;
 		[NullAllowed, Export("imagePreprocessingModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] ImagePreprocessingModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable textureDetectionModes;
 		[NullAllowed, Export("textureDetectionModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] TextureDetectionModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable textFilterModes;
 		[NullAllowed, Export("textFilterModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] TextFilterModes { get; set; }
 
 		// @property (assign, nonatomic) EnumTextAssistedCorrectionMode textAssistedCorrectionMode;
@@ -51,27 +51,27 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable dpmCodeReadingModes;
 		[NullAllowed, Export("dpmCodeReadingModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] DpmCodeReadingModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable deformationResistingModes;
 		[NullAllowed, Export("deformationResistingModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] DeformationResistingModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable barcodeComplementModes;
 		[NullAllowed, Export("barcodeComplementModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] BarcodeComplementModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable barcodeColourModes;
 		[NullAllowed, Export("barcodeColourModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] BarcodeColourModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable accompanyingTextRecognitionModes;
 		[NullAllowed, Export("accompanyingTextRecognitionModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] AccompanyingTextRecognitionModes { get; set; }
 	}
 
@@ -138,12 +138,12 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable binarizationModes;
 		[NullAllowed, Export("binarizationModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] BinarizationModes { get; set; }
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable localizationModes;
 		[NullAllowed, Export("localizationModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] LocalizationModes { get; set; }
 
 		// @property (assign, nonatomic) EnumIntermediateResultSavingMode intermediateResultSavingMode;
@@ -168,7 +168,7 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable textResultOrderModes;
 		[NullAllowed, Export("textResultOrderModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] TextResultOrderModes { get; set; }
 
 		// @property (nonatomic) iRegionDefinition * _Nonnull region;
@@ -189,7 +189,7 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable scaleUpModes;
 		[NullAllowed, Export("scaleUpModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] ScaleUpModes { get; set; }
 
 		// @property (assign, nonatomic) EnumPDFReadingMode pdfReadingMode;
@@ -198,7 +198,7 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (readwrite, nonatomic) NSArray * _Nullable deblurModes;
 		[NullAllowed, Export("deblurModes", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] DeblurModes { get; set; }
 
 		// @property (assign, nonatomic) NSInteger barcodeZoneMinDistanceToImageBorders;
@@ -302,7 +302,7 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (nonatomic) NSArray * _Nullable resultPoints;
 		[NullAllowed, Export("resultPoints", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] ResultPoints { get; set; }
 
 		// @property (assign, nonatomic) NSInteger angle;
@@ -417,17 +417,17 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (nonatomic) NSArray * _Nonnull startPatternRange;
 		[Export("startPatternRange", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] StartPatternRange { get; set; }
 
 		// @property (nonatomic) NSArray * _Nonnull middlePatternRange;
 		[Export("middlePatternRange", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] MiddlePatternRange { get; set; }
 
 		// @property (nonatomic) NSArray * _Nonnull endPatternRange;
 		[Export("endPatternRange", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] EndPatternRange { get; set; }
 	}
 
@@ -601,7 +601,7 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (nonatomic) NSArray * _Nonnull transformationMatrix;
 		[Export("transformationMatrix", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] TransformationMatrix { get; set; }
 
 		// @property (assign, nonatomic) EnumTextFilterMode textFilterMode;
@@ -691,7 +691,7 @@ namespace com.Dynamsoft.Dbr
 	{
 		// @property (nonatomic) NSArray * _Nonnull points;
 		[Export("points", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] Points { get; set; }
 	}
 
@@ -705,13 +705,13 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (nonatomic) NSArray * _Nonnull points;
 		[Export("points", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] Points { get; set; }
 	}
 
 	// @interface iImageData : NSObject
 	[BaseType(typeof(NSObject))]
-	interface iImageData
+	interface ImageData
 	{
 		// @property (nonatomic) NSData * _Nonnull bytes;
 		[Export("bytes", ArgumentSemantic.Assign)]
@@ -809,7 +809,7 @@ namespace com.Dynamsoft.Dbr
 		// @required -(void)textResultCallback:(NSInteger)frameId imageData:(iImageData * _Nonnull)imageData results:(NSArray<iTextResult *> * _Nullable)results;
 		[Abstract]
 		[Export("textResultCallback:imageData:results:")]
-		void TextResultCallback(nint frameId, iImageData imageData, [NullAllowed] iTextResult[] results);
+		void TextResultCallback(nint frameId, ImageData imageData, [NullAllowed] iTextResult[] results);
 	}
 
 	// @protocol DBRIntermediateResultDelegate <NSObject>
@@ -840,7 +840,7 @@ namespace com.Dynamsoft.Dbr
 		// @required -(void)intermediateResultCallback:(NSInteger)frameId imageData:(iImageData * _Nonnull)imageData results:(NSArray<iIntermediateResult *> * _Nullable)results;
 		[Abstract]
 		[Export("intermediateResultCallback:imageData:results:")]
-		void ImageData(nint frameId, iImageData imageData, [NullAllowed] iIntermediateResult[] results);
+		void ImageData(nint frameId, ImageData imageData, [NullAllowed] iIntermediateResult[] results);
 	}
 
 	// @protocol DBRServerLicenseVerificationDelegate <NSObject>
@@ -923,7 +923,7 @@ namespace com.Dynamsoft.Dbr
 
 		// @property (nonatomic) NSArray * _Nullable limitedLicenseModules;
 		[NullAllowed, Export("limitedLicenseModules", ArgumentSemantic.Assign)]
-		
+
 		NSObject[] LimitedLicenseModules { get; set; }
 
 		// @property (assign, nonatomic) EnumProduct products;
@@ -948,7 +948,7 @@ namespace com.Dynamsoft.Dbr
 		// @required -(iImageData * _Nullable)getImage;
 		[Abstract]
 		[NullAllowed, Export("getImage")]
-		iImageData Image { get; }
+		ImageData Image { get; }
 	}
 
 	// @interface DynamsoftBarcodeReader : NSObject
@@ -1159,7 +1159,7 @@ namespace com.Dynamsoft.Dbr
 		// -(NSArray<iTextResult *> * _Nullable)decodeBuffer:(iImageData * _Nonnull)imageData error:(NSError * _Nullable * _Nullable)error;
 		[Export("decodeBuffer:error:")]
 		[return: NullAllowed]
-		iTextResult[] DecodeBuffer(iImageData imageData, [NullAllowed] out NSError error);
+		iTextResult[] DecodeBuffer(ImageData imageData, [NullAllowed] out NSError error);
 
 		// -(BOOL)setLogConfig:(NSString * _Nonnull)logDir mode:(NSInteger)mode error:(NSError * _Nullable * _Nullable)error;
 		[Export("setLogConfig:mode:error:")]
