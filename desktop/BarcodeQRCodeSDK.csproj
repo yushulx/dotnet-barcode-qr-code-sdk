@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>BarcodeQRCodeSDK</PackageId>
-    <Version>2.3.0</Version>
+    <Version>2.4.0</Version>
     <Authors>yushulx</Authors>
     <Company>Dynamsoft</Company>
     <TargetFramework>net7.0</TargetFramework>

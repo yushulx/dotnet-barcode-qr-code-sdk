@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>BarcodeQRCodeSDK</id>
-    <version>2.3.7</version>
+    <version>2.4.0</version>
     <title>Barcode and QR Code Reader SDK</title>
     <authors>yushulx</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
