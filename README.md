@@ -6,7 +6,7 @@ This project provides a .NET wrapper for the [Dynamsoft Barcode Reader SDK v9.x]
 > Note: This project is an unofficial, community-maintained .NET wrapper for the Dynamsoft Barcode SDK. For the most reliable and fully-supported solution, consider using Dynamsoft's official packages: [Dynamsoft.DotNet.Barcode](https://www.nuget.org/packages/Dynamsoft.DotNet.Barcode) for Windows and Linux, and [Dynamsoft.BarcodeReaderBundle.Maui](https://www.nuget.org/packages/Dynamsoft.BarcodeReaderBundle.Maui) for Android and iOS.
 
 ## About Dynamsoft .NET Barcode SDK
-- Get a [30-day FREE trial license](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr) to activate the SDK.
+- Get a [30-day FREE trial license](https://www.dynamsoft.com/customer/license/trialLicense/?product=dcv&package=cross-platform) to activate the SDK.
 - Official .NET Packages:
     - **Dynamsoft.DotNet.Barcode**: A comprehensive .NET barcode SDK for Windows and Linux platforms.
     
