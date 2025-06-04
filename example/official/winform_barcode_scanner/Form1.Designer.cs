@@ -38,7 +38,6 @@
             menuStrip2 = new MenuStrip();
             enterLicenseKeyToolStripMenuItem = new ToolStripMenuItem();
             setTemplatesToolStripMenuItem = new ToolStripMenuItem();
-            dDNToolStripMenuItem = new ToolStripMenuItem();
             dBRToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
@@ -145,20 +144,15 @@
             // 
             // setTemplatesToolStripMenuItem
             // 
-            setTemplatesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dDNToolStripMenuItem, dBRToolStripMenuItem });
+            setTemplatesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dBRToolStripMenuItem });
             setTemplatesToolStripMenuItem.Name = "setTemplatesToolStripMenuItem";
             setTemplatesToolStripMenuItem.Size = new Size(91, 20);
             setTemplatesToolStripMenuItem.Text = "Set Templates";
             // 
-            // dDNToolStripMenuItem
-            // 
-            dDNToolStripMenuItem.Name = "dDNToolStripMenuItem";
-            dDNToolStripMenuItem.Size = new Size(96, 22);
-            // 
             // dBRToolStripMenuItem
             // 
             dBRToolStripMenuItem.Name = "dBRToolStripMenuItem";
-            dBRToolStripMenuItem.Size = new Size(96, 22);
+            dBRToolStripMenuItem.Size = new Size(180, 22);
             dBRToolStripMenuItem.Text = "DBR";
             dBRToolStripMenuItem.Click += dBRToolStripMenuItem_Click;
             // 
@@ -277,7 +271,6 @@
         private ListBox listBox1;
         private Label label2;
         private ToolStripMenuItem setTemplatesToolStripMenuItem;
-        private ToolStripMenuItem dDNToolStripMenuItem;
         private ToolStripMenuItem dBRToolStripMenuItem;
         private Button buttonSave;
         private Button button1;
