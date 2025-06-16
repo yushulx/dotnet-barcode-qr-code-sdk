@@ -156,7 +156,11 @@ namespace Test
             }
             else
             {
-                richTextBoxInfo.AppendText("No barcode detected!" + Environment.NewLine);
+                
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    richTextBoxInfo.AppendText("No barcode detected!" + Environment.NewLine);
+                });
             }
 
             return canvas;
