@@ -2,7 +2,7 @@
 
 A Windows Forms desktop application built with C# and **.NET 8** that demonstrates real-time and file-based detection of **barcodes/QR codes**, **document edges with normalization**, and **MRZ (Machine Readable Zone)** using the [Dynamsoft Capture Vision Bundle](https://www.nuget.org/packages/Dynamsoft.DotNet.CaptureVision.Bundle/).
 
-https://github.com/yushulx/dotnet-winform-document-barcode-mrz/assets/2202306/1ce1b1f9-df32-4db8-af74-0ce808768572
+https://github.com/user-attachments/assets/ce5f9e9e-824a-477e-b106-d1611f1ab873
 
 ## Features
 
@@ -44,7 +44,7 @@ https://github.com/yushulx/dotnet-winform-document-barcode-mrz/assets/2202306/1c
 
     Or open `barcode_document_mrz.sln` in Visual Studio 2022 and press **F5**.
 
-   ![dotnet-document-mrz-barcode-recognition](https://github.com/yushulx/dotnet-winform-document-barcode-mrz/assets/2202306/9f393959-95fd-41a7-b8f3-6e365e987613)
+   ![dotnet-document-mrz-barcode-recognition](https://www.dynamsoft.com/codepool/img/2026/02/dotnet-barcode-mrz-document-scanner.png)
 
 ## Usage
 
