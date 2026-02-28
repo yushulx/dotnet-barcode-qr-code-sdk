@@ -54,4 +54,4 @@ https://github.com/user-attachments/assets/ce5f9e9e-824a-477e-b106-d1611f1ab873
 - Click **Save** to export the annotated image.
 
 ## Blog
-[How to Build a Windows Desktop App for Document, Barcode, and MRZ Detection with C# and .NET WinForms](https://www.dynamsoft.com/codepool/dotnet-windows-document-barcode-mrz-detection.html)
+[How to Build a Windows Desktop App for Barcode, Document, and MRZ Detection with C# and .NET WinForms](https://www.dynamsoft.com/codepool/dotnet-winform-document-barcode-mrz-scanner.html)
