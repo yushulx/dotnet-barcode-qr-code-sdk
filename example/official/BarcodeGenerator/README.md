@@ -2,6 +2,8 @@
 
 A Windows Forms application for generating and reading barcodes using [ZXing.NET](https://www.nuget.org/packages/ZXing.Net) and [Dynamsoft Barcode Reader](https://www.nuget.org/packages/Dynamsoft.DotNet.BarcodeReader.Bundle).
 
+https://github.com/user-attachments/assets/be77f5bc-9e90-441c-942e-40c43938f289
+
 ## Features
 
 - Generate barcodes in various formats:
@@ -35,6 +37,8 @@ A Windows Forms application for generating and reading barcodes using [ZXing.NET
 3. Click "Generate" to create the barcode
 4. Use "Save" button to export the barcode image
 
+![.NET barcode generator and reader](https://www.dynamsoft.com/codepool/img/2025/07/dotnet-barcode-generator.png)
+
 ### Read Barcodes
 1. Click "Upload Image" to select an image containing barcodes
 2. Click "Decode" to scan for barcodes
@@ -42,4 +46,3 @@ A Windows Forms application for generating and reading barcodes using [ZXing.NET
 
 ### Settings
 - Switch between ZXing and Dynamsoft Barcode Reader SDKs
-
