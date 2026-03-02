@@ -35,3 +35,6 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
     ```
     
     ![mobile barcode and QR code reader in HTML5 and ASP.NET](https://www.dynamsoft.com/codepool/img/2022/04/asp-net-mobile-barcode-qr-code-reader.png)
+
+## Blog
+[How to Build a Barcode and QR Code Reader with HTML5 and ASP.NET](https://www.dynamsoft.com/codepool/mobile-barcode-qr-code-reader-html5-asp-net.html)
