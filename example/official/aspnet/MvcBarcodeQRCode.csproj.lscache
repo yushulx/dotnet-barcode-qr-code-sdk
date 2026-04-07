@@ -58,6 +58,7 @@ TemporaryDependencyNodeTargetIdentifier=net8.0
 Controllers/
  FileController.cs
  HomeController.cs
+framework/Controllers/HomeController.cs
 Models/ErrorViewModel.cs
 obj/Debug/net8.0/
  .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
