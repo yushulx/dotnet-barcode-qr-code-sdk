@@ -100,3 +100,6 @@ aspnet-framework/
 ├── packages.config
 └── Web.config
 ```
+
+## Blog
+[Decode Barcodes and QR Codes from Uploaded Images in ASP.NET MVC 5](https://www.dynamsoft.com/codepool/barcode-qr-code-scanner-web-app-asp-net-mvc.html)
