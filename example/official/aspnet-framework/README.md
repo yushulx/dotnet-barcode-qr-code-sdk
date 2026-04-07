@@ -2,6 +2,8 @@
 
 This sample demonstrates how to use [Dynamsoft Barcode Reader](https://www.dynamsoft.com/barcode-reader/sdk-desktop-server/) to create a responsive web barcode and QR code reader with **ASP.NET MVC 5** targeting **.NET Framework 4.8**.
 
+https://github.com/user-attachments/assets/70104d27-17a8-4d29-aa10-7cc663b57509
+
 ## Features
 
 - **Auto-scan on image load** — drop or select an image and decoding starts immediately; no scan button needed.
