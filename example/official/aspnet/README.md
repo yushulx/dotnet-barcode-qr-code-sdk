@@ -21,7 +21,7 @@ dotnet add package Dynamsoft.DotNet.BarcodeReader.Bundle
 ```
 
 ## License Activation
-Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr) to get a valid desktop license key.
+Click [here](https://www.dynamsoft.com/customer/license/trialLicense/?product=dcv&package=cross-platform) to get a valid desktop license key.
 
 ## Usage
 1. Set the license in `Controllers/FileController.cs`:
@@ -55,4 +55,8 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
 ## Screenshot
 
 ![ASP.NET Barcode and QR Code Reader](https://www.dynamsoft.com/codepool/img/2022/04/asp-net-mobile-barcode-qr-code-reader.png)
+
+
+## Blog
+[How to Build a Barcode and QR Code Reader with HTML5 and ASP.NET](https://www.dynamsoft.com/codepool/mobile-barcode-qr-code-reader-html5-asp-net.html)
 

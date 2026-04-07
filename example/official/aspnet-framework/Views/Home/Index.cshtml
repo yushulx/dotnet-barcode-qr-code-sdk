@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Barcode & QR Code Reader";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="scanner-app">
+    <div class="scanner-header">
+        <h1>Barcode &amp; QR Code Reader</h1>
+        <p class="subtitle">Upload an image to instantly decode barcodes and QR codes</p>
+    </div>
+
+    <div class="upload-zone" id="upload-zone">
+        @Html.Raw(@"<input type=""file"" id=""file"" accept=""image/*"" name=""barcodeImage"" />")
+        <div class="upload-prompt" id="upload-prompt">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            <span>Click or drag an image here</span>
+            <small>Supports JPG, PNG, BMP, TIFF, and more</small>
+        </div>
+    </div>
+
+    <div class="preview-area" id="preview-area" style="display:none">
+        <div class="image-container" id="image-container">
+            <img id="image" alt="Uploaded image" />
+            <canvas id="overlay-canvas"></canvas>
+        </div>
+        <div id="spinner" class="spinner" style="display:none">
+            <div class="spinner-ring"></div>
+            <span>Scanning&hellip;</span>
+        </div>
+    </div>
+
+    <div class="results-area" id="results-area" style="display:none">
+        <h2 class="results-title">Scan Results</h2>
+        <div id="results"></div>
+    </div>
+</div>
