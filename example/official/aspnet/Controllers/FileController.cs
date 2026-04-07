@@ -22,12 +22,12 @@ namespace MvcBarcodeQRCode.Controllers
             // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
             string errorMsg;
             int errorCode = LicenseManager.InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==", out errorMsg);
-            if (errorCode != (int)EnumErrorCode.EC_OK)
+            if (errorCode != (int)EnumErrorCode.EC_OK && errorCode != (int)EnumErrorCode.EC_LICENSE_CACHE_USED)
             {
-                return Ok("License error: " + errorMsg);
+                return Ok(new { error = "License error: " + errorMsg });
             }
 
-            var output = "No barcode found.";
+            var barcodes = new List<object>();
             using (CaptureVisionRouter cvr = new CaptureVisionRouter())
             {
                 foreach (var uploadFile in files)
@@ -45,27 +45,27 @@ namespace MvcBarcodeQRCode.Controllers
                     if (barcodesResult != null)
                     {
                         BarcodeResultItem[] items = barcodesResult.GetItems();
-                        if (items.Length > 0)
+                        foreach (BarcodeResultItem barcodeItem in items)
                         {
-                            output = "";
-                            foreach (BarcodeResultItem barcodeItem in items)
+                            var location = barcodeItem.GetLocation();
+                            barcodes.Add(new
                             {
-                                output += barcodeItem.GetText() + "\n";
-                            }
+                                text = barcodeItem.GetText(),
+                                format = barcodeItem.GetFormatString(),
+                                points = new[]
+                                {
+                                    new { x = location.points[0][0], y = location.points[0][1] },
+                                    new { x = location.points[1][0], y = location.points[1][1] },
+                                    new { x = location.points[2][0], y = location.points[2][1] },
+                                    new { x = location.points[3][0], y = location.points[3][1] },
+                                }
+                            });
                         }
-                        else
-                        {
-                            output = "No barcode found.";
-                        }
-                    }
-                    else
-                    {
-                        output = "No barcode found.";
                     }
                 }
             }
 
-            return Ok(output);
+            return Ok(new { barcodes });
         }
     }
 }

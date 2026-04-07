@@ -15,10 +15,223 @@ html {
 
 body {
   margin-bottom: 60px;
+  background: #f0f4f8;
 }
 
-img {
+/* ─── Scanner App Container ──────────────────────────────────────── */
+.scanner-app {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1rem 1rem 2rem;
+}
+
+/* ─── Header ─────────────────────────────────────────────────────── */
+.scanner-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.scanner-header h1 {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.scanner-header .subtitle {
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+/* ─── Upload Zone ────────────────────────────────────────────────── */
+.upload-zone {
+  border: 2px dashed #c9d6e3;
+  border-radius: 14px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  background: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: #0d6efd;
+  background: #f0f5ff;
+}
+
+.upload-zone input[type="file"] {
+  display: none;
+}
+
+.upload-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.upload-prompt svg {
+  color: #adb5bd;
+}
+
+.upload-prompt span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.upload-prompt small {
+  font-size: 0.82rem;
+  color: #adb5bd;
+}
+
+/* ─── Preview Area ───────────────────────────────────────────────── */
+.preview-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
   max-width: 100%;
-  min-width: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.image-container img {
+  display: block;
+  max-width: 100%;
+  max-height: 65vh;
+  width: auto;
   height: auto;
+}
+
+.image-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* ─── Spinner ────────────────────────────────────────────────────── */
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: #0d6efd;
+  font-size: 0.9rem;
+}
+
+.spinner-ring {
+  width: 34px;
+  height: 34px;
+  border: 3px solid #dee2e6;
+  border-top-color: #0d6efd;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Results Area ───────────────────────────────────────────────── */
+.results-area {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+}
+
+.results-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid #f0f0f0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.result-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.result-index {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #0d6efd;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-format {
+  align-self: center;
+  background: #e9ecef;
+  color: #495057;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.result-text {
+  flex: 1;
+  align-self: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.92rem;
+  color: #1a1a2e;
+  word-break: break-all;
+}
+
+.no-result {
+  color: #6c757d;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.92rem;
+}
+
+.no-result.error {
+  color: #dc3545;
+}
+
+/* ─── Mobile tweaks ──────────────────────────────────────────────── */
+@media (max-width: 576px) {
+  .upload-zone {
+    padding: 1.75rem 1rem;
+  }
+
+  .results-area {
+    padding: 1rem;
+  }
+
+  .result-item {
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+  }
 }
