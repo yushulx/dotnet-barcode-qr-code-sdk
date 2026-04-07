@@ -16,10 +16,6 @@ This sample demonstrates how to use [Dynamsoft Barcode Reader](https://www.dynam
 - Visual Studio 2019 or later (with **ASP.NET and web development** workload)
 - NuGet CLI or Visual Studio NuGet Package Manager
 
-> **Note:** `Dynamsoft.DotNet.BarcodeReader.Bundle` is primarily distributed for modern .NET (6+).  
-> If the package is not compatible with net48, replace it with the older `Dynamsoft.BarcodeReader`  
-> package (`DBR 9.x`) which has a `net45`/`net48` target, and adjust the namespace imports accordingly.
-
 ## Installation
 
 1. Open `MvcBarcodeQRCodeFramework.csproj` in Visual Studio.
@@ -43,9 +39,21 @@ Get a free 30-day trial key from the [Dynamsoft trial page](https://www.dynamsof
 
 1. Open the project in Visual Studio.
 2. Set the license key as described above.
-3. Press **F5** (IIS Express) or publish to IIS.
-4. Open the URL in a browser, select or drag an image containing a barcode or QR code.
-5. The app automatically scans, draws overlays on detected barcodes, and lists results below.
+3. Build the project:
+
+    ```bash
+    nuget restore MvcBarcodeQRCodeFramework.csproj -PackagesDirectory packages
+    msbuild MvcBarcodeQRCodeFramework.csproj /p:Configuration=Debug /t:Build
+    ```
+
+4. Run with IIS Express:
+
+    ```bash
+    "C:\Program Files\IIS Express\iisexpress.exe" /path:"%CD%" /port:62873
+    ```
+
+5. Open `http://localhost:62873/` in a browser, select or drag an image containing a barcode or QR code.
+6. The app automatically scans, draws overlays on detected barcodes, and lists results below.
 
 ## How It Works
 

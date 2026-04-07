@@ -18,7 +18,7 @@ namespace MvcBarcodeQRCodeFramework.Controllers
         public ActionResult Upload()
         {
             var files = Request.Files;
-            var uploadPath = Server.MapPath("~/Upload");
+            var uploadPath = Server.MapPath("~/App_Data/uploads");
 
             if (!Directory.Exists(uploadPath))
                 Directory.CreateDirectory(uploadPath);
