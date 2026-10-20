@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Dynamsoft.DotNet.BarcodeReader.Bundle" Version="11.0.3000" />
+    <PackageReference Include="Dynamsoft.DotNet.BarcodeReader.Bundle" Version="11.6.4000" />
     <PackageReference Include="OpenCvSharp4" Version="4.6.0.20220608" />
   </ItemGroup>
   <ItemGroup>

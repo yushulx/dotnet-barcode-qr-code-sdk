@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dynamsoft.DotNet.BarcodeReader.Bundle" Version="11.0.3000" />
+    <PackageReference Include="Dynamsoft.DotNet.BarcodeReader.Bundle" Version="11.6.4000" />
     <PackageReference Include="ZXing.Net" Version="0.16.10" />
     <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.13" />
   </ItemGroup>

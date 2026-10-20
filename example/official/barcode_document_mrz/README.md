@@ -21,7 +21,7 @@ https://github.com/user-attachments/assets/ce5f9e9e-824a-477e-b106-d1611f1ab873
 ## NuGet Packages
 
 ```xml
-<PackageReference Include="Dynamsoft.DotNet.CaptureVision.Bundle" Version="3.4.1000" />
+<PackageReference Include="Dynamsoft.DotNet.CaptureVision.Bundle" Version="3.6.4000" />
 <PackageReference Include="OpenCvSharp4" Version="4.6.0.20220608" />
 <PackageReference Include="OpenCvSharp4.Extensions" Version="4.5.5.20211231" />
 <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.6.0.20220608" />

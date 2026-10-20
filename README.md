@@ -3,15 +3,15 @@
 
 This project provides a .NET wrapper for the [Dynamsoft Barcode Reader SDK v9.x](https://www.dynamsoft.com/barcode-reader/overview/), enabling 1D and 2D barcode recognition for .NET and C++ applications. It supports development across multiple platforms, including **Windows**, **Linux**, **macOS**, **Android**, and **iOS**. The wrapper is designed to allow complete customization of the .NET API to suit your specific barcode scanning needs.
 
-> Note: This project is an unofficial, community-maintained .NET wrapper for the Dynamsoft Barcode SDK. For the most reliable and fully-supported solution, consider using Dynamsoft's official packages: [Dynamsoft.DotNet.Barcode](https://www.nuget.org/packages/Dynamsoft.DotNet.Barcode) for Windows and Linux, and [Dynamsoft.BarcodeReaderBundle.Maui](https://www.nuget.org/packages/Dynamsoft.BarcodeReaderBundle.Maui) for Android and iOS.
+> Note: This project is an unofficial, community-maintained .NET wrapper for the Dynamsoft Barcode SDK. For the most reliable and fully-supported solution, consider using Dynamsoft's official packages: [Dynamsoft.DotNet.BarcodeReader.Bundle](https://www.nuget.org/packages/Dynamsoft.DotNet.BarcodeReader.Bundle) for Windows and Linux, and [Dynamsoft.BarcodeReaderBundle.Maui](https://www.nuget.org/packages/Dynamsoft.BarcodeReaderBundle.Maui) for Android and iOS.
 
 ## About Dynamsoft .NET Barcode SDK
 - Get a [30-day FREE trial license](https://www.dynamsoft.com/customer/license/trialLicense/?product=dcv&package=cross-platform) to activate the SDK.
 - Official .NET Packages:
-    - **Dynamsoft.DotNet.Barcode**: A comprehensive .NET barcode SDK for Windows and Linux platforms.
+    - **Dynamsoft.DotNet.BarcodeReader.Bundle**: A comprehensive .NET barcode SDK for Windows and Linux platforms.
     
         ```bash
-        dotnet add package Dynamsoft.DotNet.Barcode
+        dotnet add package Dynamsoft.DotNet.BarcodeReader.Bundle
         ```
     
     - **Dynamsoft.BarcodeReaderBundle.Maui**: A cross-platform barcode SDK for Android and iOS, optimized for .NET MAUI applications.
@@ -21,7 +21,7 @@ This project provides a .NET wrapper for the [Dynamsoft Barcode Reader SDK v9.x]
         ```
 
 ### Comparison Table
-| Feature | Unofficial Wrapper (Community) | Official Dynamsoft.DotNet.Barcode | Official Dynamsoft.BarcodeReaderBundle.Maui |
+| Feature | Unofficial Wrapper (Community) | Official Dynamsoft.DotNet.BarcodeReader.Bundle | Official Dynamsoft.BarcodeReaderBundle.Maui |
 | --- | --- | --- |--- |
 | Support | Community-driven, best effort | Official support from Dynamsoft | Official support from Dynamsoft |
 | Documentation | README only | [Online Documentation](https://www.dynamsoft.com/barcode-reader/docs/server/programming/dotnet/api-reference/) | [Online Documentation](https://www.dynamsoft.com/barcode-reader/docs/mobile/programming/maui/api-reference/) |
