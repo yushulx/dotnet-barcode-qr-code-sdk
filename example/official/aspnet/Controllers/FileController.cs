@@ -20,8 +20,13 @@ namespace MvcBarcodeQRCode.Controllers
             }
 
             // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dbr
+            // A 24-hour trial key is baked in so the sample runs out of the box; set
+            // DYNAMSOFT_LICENSE_KEY to use your own license instead.
+            string licenseKey = Environment.GetEnvironmentVariable("DYNAMSOFT_LICENSE_KEY")
+                ?? "DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==";
+
             string errorMsg;
-            int errorCode = LicenseManager.InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==", out errorMsg);
+            int errorCode = LicenseManager.InitLicense(licenseKey, out errorMsg);
             if (errorCode != (int)EnumErrorCode.EC_OK && errorCode != (int)EnumErrorCode.EC_LICENSE_CACHE_USED)
             {
                 return Ok(new { error = "License error: " + errorMsg });

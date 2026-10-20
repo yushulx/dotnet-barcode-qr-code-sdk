@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-tests:
+    name: Smoke tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore tests/BarcodeSmokeTests/BarcodeSmokeTests.csproj
+
+      - name: Run tests
+        # The decode tests need a license. Without the secret they report as
+        # skipped instead of failing, so this job stays green for forks.
+        env:
+          DYNAMSOFT_LICENSE_KEY: ${{ secrets.DYNAMSOFT_LICENSE_KEY }}
+        run: >
+          dotnet test tests/BarcodeSmokeTests/BarcodeSmokeTests.csproj
+          -c Release --no-restore
+          --logger "console;verbosity=normal"
+          --logger "trx;LogFileName=smoke-${{ matrix.os }}.trx"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.os }}
+          path: tests/**/TestResults/*.trx
+          if-no-files-found: ignore
+
+  build-samples:
+    name: Build ${{ matrix.project }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: aspnet/MvcBarcodeQRCode.csproj
+            os: ubuntu-latest
+          - project: aspnet/MvcBarcodeQRCode.csproj
+            os: windows-latest
+          - project: BarcodeGenerator/BarcodeGenerator.csproj
+            os: windows-latest
+          - project: barcode_document_mrz/desktop-gui.csproj
+            os: windows-latest
+          - project: winform_barcode_scanner/barcode_scanner.csproj
+            os: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build
+        run: dotnet build "example/official/${{ matrix.project }}" -c Release
+
+  aspnet-integration:
+    name: Integration test aspnet (HTTP upload)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build
+        run: dotnet build example/official/aspnet/MvcBarcodeQRCode.csproj -c Release
+
+      - name: Start the sample and POST an image
+        env:
+          DYNAMSOFT_LICENSE_KEY: ${{ secrets.DYNAMSOFT_LICENSE_KEY }}
+        run: |
+          set -euo pipefail
+          cd example/official/aspnet
+          nohup dotnet run -c Release --no-build --urls http://127.0.0.1:5055 > /tmp/sample.log 2>&1 &
+
+          for i in $(seq 1 45); do
+            if curl -s -o /dev/null --max-time 2 http://127.0.0.1:5055/; then
+              echo "sample is up after ${i}s"
+              break
+            fi
+            sleep 1
+          done
+
+          status=$(curl -s -o /tmp/upload.json -w '%{http_code}' --max-time 60 \
+            -F "barcodeImage=@Upload/qr.png" http://127.0.0.1:5055/upload)
+          echo "HTTP $status"
+          cat /tmp/upload.json; echo
+          test "$status" = "200"
+
+          if grep -qi "license" /tmp/upload.json; then
+            echo "::warning::License is not active in CI, so no barcode was decoded."
+          else
+            grep -q '"format"' /tmp/upload.json || { echo "unexpected payload"; exit 1; }
+            grep -q '"points"' /tmp/upload.json || { echo "quad points missing"; exit 1; }
+          fi
+
+      - name: Show sample log
+        if: always()
+        run: tail -40 /tmp/sample.log || true
+
+  aspnet-framework:
+    name: Build aspnet-framework (.NET Framework 4.8)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: microsoft/setup-msbuild@v2
+
+      - name: Restore packages.config
+        working-directory: example/official/aspnet-framework
+        run: nuget restore packages.config -PackagesDirectory packages
+
+      - name: Build
+        working-directory: example/official/aspnet-framework
+        run: msbuild MvcBarcodeQRCodeFramework.csproj /p:Configuration=Release /p:Platform=AnyCPU /verbosity:minimal
