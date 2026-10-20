@@ -127,6 +127,8 @@ jobs:
 
       - uses: microsoft/setup-msbuild@v2
 
+      - uses: NuGet/setup-nuget@v2
+
       - name: Restore packages.config
         working-directory: example/official/aspnet-framework
         run: nuget restore packages.config -PackagesDirectory packages
