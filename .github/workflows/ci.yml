@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - name: Restore
         run: dotnet restore tests/BarcodeSmokeTests/BarcodeSmokeTests.csproj
@@ -68,7 +68,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - name: Build
         run: dotnet build "example/official/${{ matrix.project }}" -c Release
@@ -81,7 +81,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - name: Build
         run: dotnet build example/official/aspnet/MvcBarcodeQRCode.csproj -c Release
